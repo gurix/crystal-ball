@@ -2,9 +2,15 @@
 \usepackage[a4paper, left=25mm, right=40mm]{geometry}
 
 \usepackage{apacite}
+\usepackage{tikz}
 \usepackage[german]{babel}
 \usepackage{verbatim}
 \usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{prettyref}
+\usepackage{titleref}
+
 \onehalfspacing
 \setlength{\parskip}{1em} % 1ex plus 0.5ex minus 0.2ex}
 \setlength{\parindent}{0pt}
@@ -12,6 +18,8 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage[]{blindtext}
+\rightheader{Automatische Verfahren zur Prädiktorauswahl}
+
 \begin{document}
 
 \title{Automatische Verfahren zur Prädiktorauswahl in Regressionsmodellen}
@@ -33,94 +41,56 @@ Das Standardverfahren um den quantitative Zusammenhang zwischen einer abhängige
 Im Unterschied zur einfachen linearen Regression, werden in einem multiplen Regressionsmodel mehrere unabhängige Variablen mit einbezogen. Es resultiert eine Regressionsgleichung welche zur Vorhersage einer Kriteriumsvariable aufgrund mehrerer Prädikatorvariablen genutzt wird  \cite[S. 448]{bortz2011}. 
 Die Gretchenfrage stellt sich nun welche Prädikatoren nun ein Model am besten erklären. Zu beginn der Psychologischen Forschung mussten Modelle von Hand berechnet werden. Zwangsläufig wurden wenige Prädikatoren erhoben und einfache modelle Gerechnet. Friedman analysierte beispielsweise 1944 die Langlebigkeit von Turbinenschaufeln in Abhängikeit von Stress, Temperatur und einigen Legierungsparametern. Zwar wurde die Berechnung nicht mehr von Hand durchgeführt, doch benötigte eine Regressionsschätzung inklusive Berechnung der Teststatistiken rund 40 Stunden \cite[p.2]{armstrong2011illusions}. Jeder durchschnittliche Computer erledigt dies heutzutage Sekundenbruchteile. 
 
-Mit diesem technische Fortschritt einhergehend wurden Verfahren entwickelt, welche alle möglichen Kombinationen von Prädiktoren berücksichtigen und gegeneinander testen. In einem ersten Teil dieser Arbeit werden existierende Verfahren dargestellt. 
+Mit diesem technische Fortschritt einhergehend wurden Verfahren entwickelt, welche möglichen Kombinationen von Prädiktoren berücksichtigen und gegeneinander testen. In einem ersten Teil dieser Arbeit werden die wichtigsten Verfahren dargestellt. 
 
-Es können beliebig viele potentiel erklärende Variablen erhoben werden um sich komplexe Model generieren zu lassen. Menschen tendieren zu glauben, dass komplexe Probleme komplexe Lösungen benötigen. Die Forschung zeigt jedoch, dass gerade das Umgekehrte der Fall ist \cite[p.3]{armstrong2011illusions}. 
-Insbesondere Gigerenzer demonstrierte eindrucksvoll wie mit einfachen Rekognitionsheuristiken bessere Vorhersagen gemacht werden konnten als mit komplexen statistischen Modellen \cite{borges1999can}. Komplexe Modelle können sehr gute Vorhersagen liefern innerhalb des Testdatensatzes, doch oft scheitern die Vorhersage bei der Generalisierung. Der zweite Teil befasst sich mit dem Problem der Überanpassung komplexer Modelle und diskutiert mögliche Lösungsansätze.
+Es können beliebig viele potentiel erklärende Variablen erhoben werden um sich komplexe Model generieren zu lassen. Menschen tendieren zu glauben, dass komplexe Probleme komplexe Lösungen benötigen. Die Forschung zeigt jedoch, dass gerade das Umgekehrte der Fall ist \cite[p.3]{armstrong2011illusions}. sud
+Insbesondere Gigerenzer demonstrierte eindrucksvoll wie mit einfachen Rekognitionsheuristiken bessere Vorhersagen gemacht werden konnten als mit komplexen statistischen Modellen \cite{borges1999can}. Komplexe Modelle können sehr gute Vorhersagen liefern innerhalb des Referenzdatensatzes, doch oft scheitern die Vorhersage beim Versuch, diese zu generalisieren. Der zweite Teil befasst sich mit dem Problem der Überanpassung komplexer Modelle und diskutiert mögliche Lösungsansätze.
 
-\section{Multikollinearität -  Wenn Prädiktoren zusammenhängen}
-Die multiple Regression setzt die Unabhängigkeit von Prädikatoren voraus. Das will heissen, dass Prädikatoren, welche in die Regressionsgleichung aufgenommen werden, nicht das selbe messen. ``Unter Multikollinearität versteht man die wechselseitige, lineare Abhängigkeit von Variablen im Kontext multivariater Verfahren.'' \cite[p. 453]{bortz2011}
+\section{Automatische Modelwahlverfahren}
+In der psychologischen Forschung kommen oft Ex-post-facto-Designs zum Einsatz. Dies insbesondere weil viele Daten mit geringem Aufwand erhoben werden können. Oft werden  Daten gleich für mehrere Studien erhoben und in anderen Studien verwendet. Daraus resultieren viele potenzielle Prädikatorvariablen, oft ohne das es theoretische Gründe gibt nach denen die Auswahl einzuschränken ist, um das ``beste'' Modell berechnen. Je nach Verfahren, können verschiedene Kennwerte zur interpretation der Modellgüte herangezogen werden, welche nun kur vorgestellt werden.
 
-Im Kontext der psychologischen Forschung ist eine gewisse Korrelation unter den Prädikatoren nahezu unausschliessbar. Als kleines Beispiel nehmen wir mal an, dass ein Entwicklungspsychologe die durchschnittliche Schulnote aufgrund eines Intelligenztests, eines Tests der Daueraufmerksamket, dem sozioökonomischen Status der Eltern sowie des Alters vorhersagen will. Es stellt sich nun die Frage ob bei der Konstruktion der beiden Tests eine korrelation berücksichtigt wurde. Wenn nicht besteht die Gefahr, dass der Intelligenztest zu einem grossen Teil auch schlicht die Daueraufmerksamkeit misst. Ist dies der Fall, wäre das ein Paradebeispiel einer Kollinearität.
+\subsection{Exhaustiv Regression} 
+Eine naive Herangehensweise ist alle möglichen Modelle welche mit $p$ Prädiktoren möglich sind durchzurechnen. Zur Beurteilung der Modellgüte kann die mittlere quadratische Abweichung ($S_p$-Kriterium) herangezogen werden. Das ``beste'' Modell hat die kleinste mittlere quadratische Abweichung. \citeA[p.6]{thompson1978selection} sieht einzig den Nachteil darin, dass der Rechenaufwand exponentiell mit der Anzahl zu berücksichtigender Prädikatoren steigt. Es müssen immer $2^p-1$ Modelle berechnet werden, bei 5 Prädikatoren sind dies 31 Modelle, bei 10 bereits 1023 usw. Während früher eingeschränkte Rechenkapazität oft ein ökonomischer Faktor war - es musste Rechenzeit in einem Rechenzentrum reserviert werden, spielt die Rechengeschwindigkeit auf modernen Systemen eine untergeordnete Rolle, da insbesondere in der Psychologie oft nur eine Handvoll Prädikatoren durchgerechnet werden müssen.
 
-Die $\beta$-Gewichte $b_i$ einer multiplen Regression mit zwei Prädikatoren werden wie folgt ermittelt:
+\subsection{Schrittweise Regression} Das optimale Model beinhaltet jeden Prädikator, der die Voraussage bezüglich des getesteten Datensatzes auch nur minimal verbesssert. Es stellt sich die Frage ob diese minimale Verbesserung noch nützlich ist. Die ``stepwise''-Verfahren arbeiten wesentlich liberaler, in dem Prädikatoren hinzugefügt oder eliminiert werden, je nach deren Relevanz für die Modellgüte. Es werden Abbruchkritereien festgelegt, nach welchen das Modell als angemessen zu betrachten sind. Dies hat gegenüber der exhaustiven Verfahren den Vorteil, dass deutlich nicht alle Modelle berechnet werden müssen und entsprechend schneller Lösungen gefunden werden.
 
-\begin{equation}
-b_1 = \frac{r_{1c}^2 - r_{2c}\cdot r_{12}}{1-r_{12}^2}
-\label{eq:beta1}
-\end{equation}
+Innerhalb der schrittweisen Verfahren unterscheidet man zwischen \textit{forward selection} und \textit{backward elimination}. Ausgehend vom leeren Modell werden in der ersten Variante schrittweise weitere Variable der Nützlichkeit nach in das Modell integriert, bis eine Abbruchbedingung erfüllt ist. 
+\begin{figure}[hb]
+	\centering
+	\includegraphics[width=\textwidth]{forward_stepwise.png}
+	\caption{Forward Selection}
+	\label{fig:forward_stepwise}
+\end{figure}
 
-\begin{equation}
-b_2 = \frac{r_{2c}^2 - r_{1c}\cdot r_{12}}{1-r_{12}^2}
-\label{eq:beta2}
-\end{equation}
+In der zweiten Variante werden alle Prädikatoren in das Modell integriert und schlechte entfernt, wiederum bis das Abbruchkriterium erreicht ist. 
+\begin{figure}[hb]
+	\centering
+	\includegraphics[width=\textwidth]{backward_stepwise.png}
+	\caption{Backward Elimination}
+	\label{fig:backward_stepwise}
+\end{figure}
 
-Gut ersichtlich ist nun, dass zusätzlich zur Korrelation mit der Kriteriumsvariable $r_{ic}$, in den Gleichungen \ref{eq:beta1} und \ref{eq:beta2} die Korrelation zwischen den beiden Prädikatoren sowohl im Nenner als auch im Zähler mit einfliessen. Dadurch wird die Interpretation der $\beta$-Gewichte erschwert, da diese mit zunehmender Korrelation der Prädikatoren verzerrt werden. Am deutlichsten wird dies, wenn der eine Prädikator eine linearkombination des anderen Prädikator darstellt. In diesem Fall haben wir eine perfekte Korrelation, also $r_{12} = 1$, was vorkommen kann, wenn beispielsweise ein Prädikator versehentlich zweimal in die Gleichung einfliesst.
+Die Aufnahme einer neuen Variable kann dazu führen, dass eine bereits im Model verhandene Variable obsolet wird. Um diesem Umstand Rechnung zu tragen werden oft forward selection und backward elimination kombiniert \cite[p. 461]{bortz2011}. 
 
-\begin{equation}
-\lim_{r_{12} \to 1} \frac{r_{2c}^2 - r_{1c}\cdot r_{12}}{1-r_{12}^2} =  \lim_{r_{12} \to 1} \frac{r_{1c}^2 - r_{2c}\cdot r_{12}}{1-r_{12}^2} = \infty
-\label{eq:linearcomb}
-\end{equation}
+In selltenen Fällen kann es vorkommen, dass zwei Variablen für sich das Kriterium in die Regressionsgleichung aufgenommen zu werden nicht erfüllen, jedoch zusammen zum Vorhersagepotetial einen substantiellen Beitrag leisten \cite[p.261]{jacob2003applied}. Schrittweise Verfahren sind entsprechend nicht in der Lage solche Effekte mit zu berücksichtigen. 
+
+Entgegen dem exhaustiven Verfahren besteht bei schrittweisen Verfahren das Problem, dass unter Umständen nicht das optimale Modell gefunden wird. Da die Nützlichkeitsunterschiede, welche oft nur geringe statistische Bedeutung haben, das Modell bestimmen, bezeichnet \citeA[p. 462]{bortz2011} dieses Verfahren eher zu den explorativen gehörend. \citeA[p. 56ff]{harrell2001regression} lehnt das Verfahren gar ab und führt ins Feld, dass sämtliche statistischen Prinzipien verletzt würden. \citeA{berk1978comparing} zeigte jedoch in einem Vergleich, dass die durchschnittliche Differenz der Fehlerquadratsummen zwischen exhaustiven und schrittweriser Regression kaum 7\% übertrifft. 
+
+Zentrales Element der schrittweisen Regression ist das Mass zur Beurteilung der  Modellanpassung, welche besagt, weshalb und wann ein Model als akzeptabel zu betrachten ist. Als Folge dessen wird damit auch die Anzahl relevanter Prädiktoren bestimmt.
+
+\paragraph{Bestimmtheitsmass}  Das Quadrat des multiplen Korrelationskoeffizienten $R^2$ besagt wieviel systematische Varianz aufgeklärt wird. Je grösser die Zahl der unabhängigen Variablen ist, desto grösser wird das Bestimmtheitsmass, weshalb eine korrektur vorgenommen werden muss. Insbesondere bei kleinem $R^2$ sollte auf Signifikanz getestet werden, entsprechend wird in schrittweisen Verfahren Prädikatoren nicht einzig aufgrund von $R^2$ selektiert. 
+
+\paragraph{Signifikanztest} Das Verfahren wird beendet, wenn kein Pädikator mehr vorhanden ist, der das Vorhsagepotintal signifikant erhöht. Das vergleichen zweier Regressionsgleichungen mittels Signifikanztests bedingt, dass diese geschachtelt sein müssen, das kleinere Modell muss im grösseren enthalten sein \cite[p. 508]{jacob2003applied}.
+
+\citeA[p. 269]{derksen2011backward} diskutieren mehrere Empfehlungen für Signifikanzniveaus und weisen darauf hin, das sich über mehrere Tests der $\alpha$-Fehler kummuliert. In  Simulationen mit artifiziellen Daten zeigen \citeA{mundry2009stepwise} das  Problem multipler Tests beispielhaft auf. Daraus resultiertend lehnen sie die Verwendung der schrittweisen Regression gar ab.
  
-Eine solche Linearkombination führt dazu, dass die $\beta$-Gewichte gar nicht berechnet werden können, wie aus der Gleichung \ref{eq:linearcomb} ersichtlich wird.
-
-Literatur: \cite[p. 452ff]{bortz2011}, \cite{jacob2003applied}, \cite[p. 56ff]{harrell2001regression}
-
-Detecting multicollinearity
-Techniques that examine the interdependence of the data by examining what
-would be called the design matrix in controlled experiments are becoming
-widely used. These include examination of the eigenvalues (the variance of
-each independent principal component), the eigenvectors (the matrix of
-coefficients used to obtain the independent principal components), the tol-
-erance (1 minus the squared multiple correlation between that X1 and the
-remaining X variables), and the variance inflation factors (VIF) (the recip-
-rocals of the tolerances) (Belsey et al., 1980; Gunst and Mason, 1980; Afifi
-and Clark, 1984; Neter et al., 1985 ). Dillon and Goldstein (1984) advocated
-a similar analysis called "singular-value decomposition". \cite[p. 3]{lafi1992explanation}
-\subsection{Korrelation}
-\blindtext
-
-\subsection{Bestimmtheitsmass} 
-\blindtext
-
-\subsection{Konditionsindex}
-\blindtext
-
-\section{Interaktionen}
-Literatur: \citeA{cortina1994interaction}
-
-\blindtext
-
-\section{Nichtlinearitäten}
-Literatur: \citeA{cortina1994interaction}
-
-\blindtext
+\paragraph{Informationskriterium (AIC / BIC)} Das Akaikes Informationskriterium (AIC) und Bayessche Informationskriterium (BIC) basieren auf der Maximum-Likelihood-Methode, müssen nicht geschachtelt sein und berücksichtigen die Komplexität des Models anhand der Prädiktoranzahl. Die beiden Kennwerte strafen dem Prinzip der Sparsamkeit entsprechend komplexität. \ref{xx}
 
 
-\section{Modelloptimierung - Was zusammenhängt gehört rein, was einigermassen unbedeutend ist raus.}
-\subsection{Hypothesentestung}
-Literatur: \citeA{pasha2002selection}, \citeA{mundry2009stepwise}
+ geht mit dem schrittweisen Verfahren hart ins Gericht. Es sei keine statistische Methode, da es  jedes Prinzip des statistischen Schätzens und der Hypothesentestung verletze. Dabei führt er ins Feld, dass die F und $\chi^2$ Teststatistik nicht über die geforderte Verteilung verfüge und vorgesehen sind vordefinierte Hypothesen zu teste. Die Auswahl der berücksichtigt die Kolinearität nicht, welche die Auswahl willkürlich machen lässt.
 
-\blindtext
-\subsection{AIC}
-Literatur : \citeA{weakliem2004introduction}
-
-\blindtext
-\subsection{BIC}
-Literatur : \citeA{weakliem2004introduction}
-
-\blindtext
-\subsection{Kreuzvalidierung}
-Literatur : \citeA{arlot2010survey}
-
-\blindtext
-
-\section{Data-Mining - aus einem Datenberg etwas Wertvolles extrahieren}
-Literatur: \citeA{hand2001principles}, \citeA{fischerstatistik}
-
-\blindtext
 \section{Zusammenfassung / Diskussion}
-\blindtext
+\label{xx}
 \blindtext
 
 \newpage
