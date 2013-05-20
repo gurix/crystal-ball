@@ -69,9 +69,13 @@ Es gilt das ``beste'' Modell berechnen, oft ohne das es theoretische Gründe gib
 Box will damit hervorheben, dass obschon in der Literatur oft vom ``besten'' oder ``wahren'' Modell gesprochen wird, dies nur ein Approximation darstellt \cite[p.172]{weakliem2004introduction}. 
 \subsection{Exhaustiv Regression} 
 Eine naive Herangehensweise ist alle möglichen Modelle welche mit $p$ Prädiktoren möglich sind durch zurechnen. 
-Zur Beurteilung der Modellgüte kann die mittlere quadratische Abweichung herangezogen werden. 
-Das ``beste'' Modell hat die kleinste mittlere quadratische Abweichung ($S_p$-Kriterium) \cite[p. 5]{thompson1978selection}. 
-Da alle Möglichen Kombinationen durch gerechnet werden, wird das ``beste'' Modell, also das welches den Referenzdatensatz am besten Vorhersagen kann, gefunden. 
+Zur Beurteilung der Modellgüte kann die mittlere quadratische Abweichung herangezogen werden, welche durch das $S_p$-Kriterium ausgedrückt wird.
+Das Modell mit der kleinsten Fehlerquadratsumme $SSE_p$ wird als das  ``beste'' Modell bezeichnet \cite[p. 6]{thompson1978selection}. 
+\begin{equation}
+S_p = {{SSE_p}\over{ (n-p-2)(n-p)}}
+\tag{$S_p$-Kriterium}
+\end{equation}
+Da alle Möglichen Kombinationen durch gerechnet werden, wird das ``beste'' Modell, also das welches den Trainingsdatensatz am besten Vorhersagen kann, gefunden. 
 Entsprechend wird in der Literatur auch oft vom optimalen Modell gesprochen. Es liegt jedoch auf der Hand, dass dies zwar die interne Validität erhöht, aber die externe Validität gefährdet.
 Das optimale Modell kann, insbesondere bei hoher Komplexität, zu fest auf die Referenzdaten behaftet sein und dadurch schlecht generalisierbar sein.
 Auf diesen Effekt der Überanpassung wird im zweiten Teil dieser Arbeit noch näher eingegangen.  
@@ -114,14 +118,21 @@ Da die Nützlichkeitsunterschiede, welche oft nur geringe statistische Bedeutung
 \citeA[p. 56ff]{harrell2001regression} lehnt das Verfahren gar ab und führt ins Feld, dass sämtliche statistischen Prinzipien verletzt würden. 
 \citeA{berk1978comparing} zeigte jedoch in einem Vergleich, dass die durchschnittliche Differenz der Fehlerquadratsummen zwischen exhaustiven und schrittweiser Regression kaum 7\% übertrifft. 
 
-Zentrales Element der schrittweisen Regression ist das Mass zur Beurteilung der  Modellanpassung, welche besagt, weshalb und wann ein Modell als akzeptabel zu betrachten ist. 
+Zentrales Element der schrittweisen Regression ist das Kriterium zur Beurteilung der  Modellanpassung, welche besagt, weshalb und wann ein Modell als akzeptabel zu betrachten ist. 
 Als Folge dessen wird damit auch die Anzahl relevanter Prädiktoren bestimmt.
 
-\paragraph{Bestimmtheitsmass}  Das Quadrat des multiplen Korrelationskoeffizienten $R^2$ besagt wie viel systematische Varianz aufgeklärt wird. 
-Je grösser die Zahl der unabhängigen Variablen ist, desto grösser wird das Bestimmtheitsmass, weshalb eine Korrektur vorgenommen werden muss. 
-Insbesondere bei kleinem $R^2$ sollte auf Signifikanz getestet werden, entsprechend wird in schrittweisen Verfahren Prädikatoren nicht einzig aufgrund von $R^2$ selektiert. 
 
-\paragraph{Signifikanztest} Das Verfahren wird beendet, wenn kein Prädikator mehr vorhanden ist, der das Vorhersagepotential signifikant erhöht \cite[p.48]{bendel1977comparison}. 
+Das Quadrat des multiplen Korrelationskoeffizienten $R^2$ besagt wie viel systematische Varianz aufgeklärt wird. 
+Das Bestimmtheismass steigt mit der Anzahl der Prädiktoren $p$, insbesondere bei kleinem Stichprobenumfang $n$, weshalb eine Schrumpfungskorrektur vorgenommen werden muss \cite[p. 451]{bortz2011}. 
+
+\begin{equation}
+\bar R^2=1-\frac{\displaystyle \frac{1}{n-p-1} \sum_{i=1}^n (Y_i-\hat{Y}_i)^2}{\displaystyle \frac{1}{n-1} \sum_{i=1}^n (Y_i-\bar{Y})^2}
+\tag{korrigiertes Bestimmtheitsmass}
+\end{equation}
+
+Insbesondere bei kleinem $R^2$ sollte auf Signifikanz getestet werden, entsprechend werden Modelle in schrittweisen Verfahren nicht einzig aufgrund von $R^2$ selektiert. 
+
+Das Verfahren wird beendet, wenn kein Prädikator mehr vorhanden ist, der das Vorhersagepotential signifikant erhöht \cite[p.48]{bendel1977comparison}. 
 Das vergleichen zweier Regressionsgleichungen mittels Signifikanztest bedingt, dass diese geschachtelt sein müssen, das kleinere Modell muss im grösseren enthalten sein \cite[p. 508]{jacob2003applied}.
 
 Das gewählte Signifikanzniveau ist eigentlich unbegründet gewählt \cite[p. 174]{weakliem2004introduction}. \citeA[p. 269]{derksen2011backward} diskutieren mehrere Empfehlungen für Signifikanzniveaus und weisen darauf hin, das sich über mehrere Tests der $\alpha$-Fehler kumuliert. 
@@ -138,8 +149,13 @@ Ein Anstieg der  korrelation zwischen Prädiktoren hat zur Folge, dass (a) die p
 Grundsätzlich gilt die Unabhängigkeit der Prädikatoren als Voraussetzung für die multiple Regression, doch gerade in der psychologischen Forschung lassen sich Korrelationen meist schlecht vermeiden.
 Um bereits im Vorfeld Hinweise auf potentielle Kollinearität zu erhalten, empfiehlt es sich die Kovarianzmatrix zwischen allen Prädikatoren vor der eigentlichen Auswahl zu betrachten.
 Eventuell wurde das selbe Merkmal mehrmal erhoben.
-Der Zusammen hang zwischen den Prädikatorvariablen und der vorhergesagten Kriteriumsvariable lässt sich mit dem Strukturkoeffizienten $c_i$ ausdrücken. So kann auf die Prädikatoren eingeschränkt werden,  welche am besten das Kriterium vorhersagen \cite[S. 453]{bortz2011}. 
-
+Der Zusammenhang zwischen einer Prädikatorvariable $i$ und der vorhergesagten Kriteriumsvariable lässt sich mit dem Strukturkoeffizienten $c_i$ ausdrücken.
+\begin{equation}
+c_i = \frac{r_{ic}}{R}
+\tag{Strukturkoeffizient}
+\end{equation}
+$r_{ic}$ beschreibt den einzelnen Korrelationskoeffizent zwischen dem Prädikator $i$ und dem Kriterium $c$ und $R$ den multiplen Korrelationskoeffizient. 
+So kann auf die Prädikatoren eingeschränkt werden,  welche am besten das Kriterium vorhersagen \cite[S. 453]{bortz2011}. 
 \section{Überanpassung - Der einfachste Ausdruck verwickelter Probleme ist immer der beste}
 \label{sparsamkeit}
 Der Mensch strebt nach Kontrolle und verfällt dabei oft der Illusion, alles bis ins letzte Detail kontrollieren zu müssen.
@@ -158,15 +174,32 @@ Die bisher beschriebenen Modellwahlverfahren fokusieren sich darauf anhand der g
 Kriterienbasierende Strategien zur Vermeidung der Überanpassung strafen komplexität ab, in dem das Kriterium diese berücksichtigt.
 Je komplexer ein Regressionsmodell wird, desto besser muss die Vorhersage stimmen um die komplexität zu rechtfertigen.
 
-Colin Lingwood Mallows entwickelte das $C_p$ Kriterium, dass auf der Methode der kleinsten Quadrate ($S_p$-Kriterium) aufbaut und sowohl die Prädikatoranzahl als auch die Stichprobengrösse berücksichtigt. Angestrebt wurde dabei alle wichtigen Prädikatoren zu berücksichtigen. 
-Das ``beste'' Modell ist das mit (a) dem niedrigsten Cp-Wert, der (b) möglichst gleich p ist, ist \cite{gilmour1996interpretation}.
+Colin Lingwood Mallows entwickelte das $C_p$ Kriterium, dass auf der Methode der kleinsten Quadrate ($S_p$-Kriterium) aufbaut und sowohl die Prädikatoranzahl $p$ als auch die Stichprobengrösse $n$ berücksichtigt. 
+\begin{equation}
+C_p={SSE_p \over \sigma^2} - n + 2p
+\tag{Mallows's $C_p$}
+\end{equation}
+Angestrebt wurde dabei alle wichtigen Prädikatoren zu berücksichtigen. 
+Das ``beste'' Modell ist das mit (a) dem niedrigsten $C_p$-Wert, der (b) möglichst gleich $p$ ist, ist \cite{gilmour1996interpretation}.
 
-EINFüHREND \cite[p.170]{weakliem2004introduction}
+Die bisher auf der Methode der kleinsten Quadrate basierenden Verfahren bedingen, dass die Prädikatoren geschachtelt sind. 
+Das soll heissen, dass jeweils alle Prädiktoren des kleineren Modell im grösseren enthalten sein müssen. 
+Dies wird für die  beiden Kennwerte, Akaikes Informationskriterium (AIC) und  Bayessche Informationskriterium (BIC) nicht vorausgesetzt. 
+Beide Kennwerte basieren auf der Maximum-Likelihood-Methode $L$ und  berücksichtigen die Anzahl Prädiktoren $p$. 
+Dem Prinzip der Sparsamkeit entsprechend geben kleinere Modell bei gleicher Vorhersagekraft, bessere Kennwerte \cite[p. 509]{jacob2003applied}. 
+Bei Regressionsmodellen mit normalverteilten Fehler entspricht die Wahrscheinlichkeitsfunktion $L$ der des quadrierten Standardfehlers der Regression $\sigma^2$ \cite[p. 169]{weakliem2004introduction}. 
 
-Das Akaikes Informationskriterium (AIC) und Bayessche Informationskriterium (BIC) basieren auf der Maximum-Likelihood-Methode, Regressionsgleichungen müssen nicht ineinander geschachtelt sein und der Kennwert berücksichtigen die Komplexität des Modells anhand der Prädiktoranzahl. 
-Die beiden Kennwerte strafen dem Prinzip der Sparsamkeit entsprechend Komplexität, was der Überanpassung entgegen wirkt.
+\begin{equation}
+AIC = n \log(\sigma^2) + 2p
+\tag{AIC}
+\end{equation}
 
-Das schrittweise Verfahren stoppt, wenn die Grösse AIC / BIC nicht mehr abnimmt.
+Gegenüber AIC ist BIC konservativer, denn es wird zusätzlich der Stichprobenumfang $n$ berücksichtigt \cite[p. 169]{weakliem2004introduction}. 
+
+\begin{equation}
+BIC = n\log(\sigma^2) + p\log(n)
+\tag{BIC}
+\end{equation}
 
 
 \subsection{Kreuzvalidierung}
@@ -184,7 +217,8 @@ In der Modellselektion wird jedoch die stabilität nicht berücksichtigt.
 Bei der schrittweisen Regression haben wir gesehen, dass das ``beste'' Modell nicht zwangsläufig gefunden wird.
 Entsprechendes gilt für die Stabilität, was zur Konsequenz führen kann, dass zwar gute Modelle gefunden werden, diese jedoch allesamt nicht stabil genug sind oder das stabilste schlicht nicht gefunden wird. 
 \citeA[p. 12]{arlot2010survey} nennen noch die Möglichkeit die Stabilität in die Modellselektion zu integrieren und als  Kriterium zu berücksichtigen. 
-Zu jeder Modellschätzung wird deren Stabilität berechnet und Modelle welche keine genügenden Werte aufweisen werden abgewiesen. Ein Nachteil dessen ist der höhrere Rechenaufwand, da für jedes Modell zusätzliche Durchgänge benötigt.
+Zu jeder Modellschätzung wird deren Stabilität berechnet und Modelle welche keine genügenden Werte aufweisen werden abgewiesen. 
+Ein Nachteil dessen ist der höhrere Rechenaufwand, da für jedes Modell zusätzliche Durchgänge benötigt. 
 
 Kreuzvalidierungsverfahren unterscheiden sich in erster Linie anhand der Strategie, mit der die Daten ``getrennt'' werden.
 In der Regel wird dafür ein genug grosser Datensatz herangezogen und unterteilt, wobei vorausgesetzt wird, dass die Teilstichproben unabhängig und gleich verteilt sind. 
@@ -197,6 +231,8 @@ Weitere Verfahren und deren Vergleiche finden sich bei \citeA{arlot2010survey}.
 Die Kreuzvalidierung ist ein gutes Mittel um Überanpassung entgegen zu wirken.
 Darüber hinaus ist die Stabilität ein guter Indikator für die Generalisierbarkeit.
 Bedingung ist jedoch, dass dadurch zusätzlich Datensätze zur Verfügung stehen, was im bereich der Psychologischen Forschung durchaus nicht immer gegeben ist.
+
+
 
 \section{Software zu den vorgestellten Verfahren}
 Die bisher vorgestellten Verfahren sind in den meisten grösseren Statistikprogrammen bereits integriert oder können als Erweiterung hinzugefügt werden.
@@ -229,9 +265,10 @@ Die Funktion bietet über die reine Berechnung hinaus die Möglichkeit die $k$ D
 \bibliography{literature}
 \newpage
 \section{Anhang}
-\blindtext
-\newpage
-\section{Selbstständigkeitserklärung}
+\subsection*{Selbstständigkeitserklärung zur Literaturarbeit am  Psychologischen Institut}
+\paragraph{Originalarbeit}
+Ich erkläre ausdrücklich, dass es sich bei der von mir eingereichten schriftlichen Arbeit 
+mit dem Titel ``\title''
 \blindtext
 \begin{comment}
 
