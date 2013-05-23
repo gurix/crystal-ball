@@ -3,7 +3,8 @@
 
 \usepackage{apacite}
 \usepackage{amsmath}
-
+\usepackage{glossaries}
+\makeglossaries
 \usepackage{tikz}
 \usepackage[german]{babel}
 \usepackage{verbatim}
@@ -11,7 +12,6 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{prettyref}
-\usepackage{titleref}
 
 \onehalfspacing
 \setlength{\parskip}{1em} % 1ex plus 0.5ex minus 0.2ex}
@@ -20,9 +20,12 @@
 \usepackage[utf8]{inputenc}
 
 \usepackage[]{blindtext}
-\rightheader{Automatische Verfahren zur Prädiktorauswahl}
+\rightheader{Automatisierte Verfahren zur Prädiktorauswahl}
 
 \begin{document}
+\glossary{name={Trainingsdatensatz}, description={Datensatz anhand dessen das Regressionsmodell geschätzt wird}} 
+\glossary{Datamining}{name=Datamining ,
+description={Systematische Anwendung statistischer Methoden auf einen grossen Datenbestand mit dem Ziel, neue Muster zu erkennen}}
 
 \title{Automatische Verfahren zur Prädiktorauswahl in Regressionsmodellen}
 \shorttitle{Prädiktorauswahl in Regressionsmodellen} 
@@ -56,7 +59,7 @@ In einem ersten Teil dieser Arbeit werden die wichtigsten Verfahren dargestellt.
 Es können beliebig viele potentiell erklärende Variablen erhoben werden um sich komplexe Modell generieren zu lassen. 
 Menschen tendieren zu glauben, dass komplexe Probleme komplexe Lösungen benötigen. 
 Die Forschung zeigt jedoch, dass gerade das Umgekehrte der Fall ist \cite[p.3]{armstrong2011illusions}. 
-Insbesondere Gigerenzer demonstrierte eindrucksvoll wie mit einfachen Rekognitionsheuristiken bessere Vorhersagen gemacht werden konnten als mit komplexen statistischen Modellen \cite{borges1999can}. 
+Insbesondere Gigerenzer demonstrierte eindrucksvoll wie mit einfachen Rekognitionsheuristiken bessere Vorhersagen gemacht werden konnten als mit komplexen statistischen Modellen \cite{borges1999can}.
 Komplexe Modelle können sehr gute Vorhersagen liefern innerhalb des Trainingsdatensatz, doch oft scheiter die Vorhersage beim Versuch, diese zu generalisieren. 
 Der zweite Teil befasst sich mit dem Problem der Überanpassung komplexer Modelle und diskutiert mögliche Lösungsansätze.
 
@@ -255,11 +258,26 @@ Für die $k$-Fache-Kreuzvalidierung bietet sich die Funktion $CVlm(...)$ aus dem
 Die Funktion bietet über die reine Berechnung hinaus die Möglichkeit die $k$ Durchgänge grafisch auszugeben.
 
 
-\section{Zusammenfassung / Diskussion} 
+\section{Zusammenfassung / Diskussion}
+Der Einsatz automatisierter Verfahren zur Bestimmung von Regressionsgleichungen ist umstritten. 
+Während die einen Autoren dies als ein probates expoloratives Mittel ansehen lehnen andere insbesondere die schrittweise Regression ab.
+
+\citeA[p. 57]{harrell2001regression} erwähnt dabei eine ganz generelle Schwierigkeit: ``It allows us to not think about the problem.''.
+Moderne leicht zu bedienende Statistikprogramme gepaart mit der Möglichkeit schier grenzenloser Rechenkapazität verführen einem nach Effekten zu fischen und Datamining zu betreiben.
+In der Grundlagenforschung der Psychologie gilt es jedoch hypothesengeleitetet vorzugehen.
+Es muss zuvor über das Problem nachgedacht werden bevor mittels automatisierte Verfahren explorativ Hypothesen erarbeitet werden.
+Mögliche Abhänigkeiten zwischen potentiellen Prädiktoren sind im Vorfeld zu beachten.
+Dies zeigt und insbesondere das Problem der Kolinearität.
+
+Es wurden zwei Verfahren zur automatisierten Modellwahl vorgestellt, exhaustive und schrittweise Verfahren.
+Der Vorteil exhaustiver Verfahren liegt darin, dass durch komplettes durchrechnen das zum jeweiligen Trainingsdatensatz gefundene optimale Modell gefunden wird.
+Im Anschluss 
 
 
-\blindtext
 
+\newpage
+\printglossaries 
+%\addcontentsline{toc}{chapter}{Glossar}
 \newpage
 \bibliographystyle{apacite} 
 \bibliography{literature}
@@ -268,14 +286,21 @@ Die Funktion bietet über die reine Berechnung hinaus die Möglichkeit die $k$ D
 \subsection*{Selbstständigkeitserklärung zur Literaturarbeit am  Psychologischen Institut}
 \paragraph{Originalarbeit}
 Ich erkläre ausdrücklich, dass es sich bei der von mir eingereichten schriftlichen Arbeit 
-mit dem Titel ``\title''
-\blindtext
-\begin{comment}
+mit dem Titel ``Automatische Verfahren zur Prädiktorauswahl in Regressionsmodellen''um eine von mir selbst und ohne unerlaubte Beihilfe sowie in eigenen Worten verfasste 
+Originalarbeit handelt. 
+Sofern es sich dabei um eine Arbeit von mehreren Verfasserinnen oder Verfassern handelt, bestätige ich, dass die entsprechenden Teile der Arbeit korrekt und klar gekennzeichnet und der jeweiligen Autorin oder dem jeweiligen Autor eindeutig zuzuordnen sind.
+Ich bestätige überdies, dass die Arbeit als Ganze oder in Teilen weder bereits einmal zur Abgeltung anderer Studienleistungen an der Universität Zürich oder an einer anderen Universität oder Ausbildungseinrichtung eingereicht worden ist noch inskünftig durch mein Zutun als Abgeltung einer weiteren Studienleistung eingereicht werden wird.  
+\paragraph{Verwendung von Quellen} 
+Ich erkläre ausdrücklich, dass ich sämtliche in der oben genannten Arbeit enthaltenen Bezüge auf fremde Quellen (einschliesslich Tabellen, Grafiken u. Ä.) als solche kenntlich gemacht habe. Insbesondere bestätige ich, dass ich ausnahmslos und nach bestem Wissen sowohl bei wörtlich übernommenen Aussagen (Zitaten) als auch bei in eigenen Worten wiedergegebenen Aussagen anderer Autorinnen oder Autoren (Paraphrasen) die Urheberschaft angegeben habe. 
 
-\\
-\\
+\paragraph{Sanktionen}
+Ich nehme zur Kenntnis, dass Arbeiten, welche die Grundsätze der 
+Selbstständigkeitserklärung verletzen – insbesondere solche, die Zitate oder Paraphrasen ohne Herkunftsangaben enthalten –, als Plagiat betrachtet werden und die entsprechenden rechtlichen und disziplinarischen Konsequenzen nach sich ziehen können (gemäss §§ 7ff der Disziplinarordnung der Universität Zürich sowie § 36 der Rahmenordnung für das Studium in den Bachelor- und Masterstudiengängen der Philosophischen Fakultät der Universität Zürich). 
+
+Ich bestätige mit meiner Unterschrift die Richtigkeit dieser Angaben.
+
 Name: Markus Graf\\
-Matriculation number:  08-91271-9\\
+Matrikelnummer:  08-91271-9\\
 \\
 \\
 \\
@@ -284,7 +309,7 @@ Matriculation number:  08-91271-9\\
 \\
 ............................................................................\\
 Zürich, \today
-\end{comment}
+
 
 
 \end{document}

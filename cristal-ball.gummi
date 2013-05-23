@@ -1,0 +1,4 @@
+version=0.6.0
+typesetter=pdflatex
+steps=texpdf
+root=/home/markus/Dropbox/UZH/6_Semester/Literaturarbeit/crystal-ball/main.tex
