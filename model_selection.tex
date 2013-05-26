@@ -1,0 +1,80 @@
+\section{Automtaische Modellwahlverfahren}
+Zu beginn der Psychologischen Forschung mussten Modelle von Hand berechnet werden. Zwangsläufig wurden wenige Prädikatoren erhoben und einfache Modelle Gerechnet. 
+Friedman analysierte beispielsweise 1944 die Langlebigkeit von Turbinenschaufeln in Abhängigkeit von Stress, Temperatur und einigen Legierungsparametern. 
+Zwar wurde die Berechnung nicht mehr von Hand durchgeführt, doch benötigte eine Regressionsschätzung inklusive Berechnung der Teststatistiken rund 40 Stunden \cite[p.2]{armstrong2011illusions}. Jeder durchschnittliche Computer erledigt dies heutzutage Sekundenbruchteile. 
+Mit dem technische Fortschritt einhergehend wurden Verfahren entwickelt, welche alle möglichen Kombinationen von Prädiktoren inklusiver ihrer Interaktionen berücksichtigen und gegeneinander testen.
+
+Es gilt also das ``beste'' Modell zu schätzen. 
+Gemeint ist mit dem ``besten'' Modell das, welches innerhalb des Trainingsdatensatzes, die beste Vorhersage liefert. 
+Anhand des Trainingsdatensatzes wurde das Modell jedoch auch geschätzt. Entsprechend kann es Modelle geben die in der Gesamtpopulation bessere Vorhersagen liefern. 
+``All models are wrong, but some are useful'' \cite[p.202]{box1979robustness}.
+Box will damit hervorheben, dass obschon in der Literatur oft vom ``besten'' oder ``wahren'' Modell gesprochen wird, dies nur ein Approximation der Wirklichkeit darstellt \cite[p.172]{weakliem2004introduction}.
+
+\subsection{Exhaustive Schätzung} 
+Eine naive Herangehensweise ist alle möglichen Modelle welche mit $p$ Prädiktoren möglich sind durch zurechnen. 
+Zur Beurteilung der Modellgüte kann die mittlere quadratische Abweichung herangezogen werden.
+Das Modell mit der kleinsten Fehlerquadratsumme $SSE_p$ wird als das  optimale Modell bezeichnet \cite[p. 6]{thompson1978selection}. 
+
+
+Da alle Möglichen Kombinationen durch gerechnet werden, wird das  Modell gefunden, das den Trainingsdatensatz am besten Vorhersagt.
+\citeA[p.6]{thompson1978selection} sieht einzig den Nachteil darin, dass der Rechenaufwand exponentiell mit der Anzahl zu berücksichtigender Prädikatoren steigt. 
+Es müssen immer $2^p-1$ Modelle berechnet werden, bei 5 Prädikatoren sind dies 31 Modelle, bei 10 bereits 1023 usw.
+Während früher eingeschränkte Rechenkapazität oft ein ökonomischer Faktor war - es musste Rechenzeit in einem Rechenzentrum reserviert werden - spielt die Rechengeschwindigkeit auf modernen Systemen eine untergeordnete Rolle. 
+Insbesondere in der psychologischen Forschung muss oft nur eine Handvoll Prädikatoren in die Schätzung einbezogen werden.
+
+\subsection{Schrittweise Verfahren} 
+Das optimale Modell beinhaltet jeden Prädikator, der die Voraussage auch nur minimal verbessert. 
+Es stellt sich die Frage ob diese minimale Verbesserung auch nützlich ist oder einfach durch Zufall entstanden ist. 
+Schrittweise Verfahren arbeiten wesentlich liberaler.  Prädikatoren werden hinzugefügt oder eliminiert, je nach deren Relevanz für die Modellgüte. 
+Es werden Kriterien festgelegt, nach welchen ein Modell als angemessen zu betrachten ist. 
+Dies hat gegenüber dem exhaustiven Verfahren den Vorteil, dass nicht alle Modelle berechnet werden müssen und entsprechend schneller Lösungen gefunden werden. 
+%Im Schnitt müssen xxxx Modelle berechnet werden, um eine adäquate Lösung zu finden \cite{tobecite}.
+
+Innerhalb der schrittweisen Verfahren unterscheidet man zwischen \textit{forward selection} und \textit{backward elimination}. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.5\textheight]{forward_stepwise.png}
+	\caption{Forward Selection}
+	\label{fig:forward_stepwise}
+\end{figure}
+Ausgehend vom leeren Modell werden in der ersten Variante schrittweise weitere Variable der Nützlichkeit nach in das Modell integriert. Dies dauert so lange an, bis kein Prädiktor mehr gefunden wird, der ein gewisses Kriterium erfüllt.
+\begin{figure}[H]
+	\centering
+	\includegraphics[height=0.5\textheight]{backward_stepwise.png}
+	\caption{Backward Elimination}
+	\label{fig:backward_stepwise}
+\end{figure}
+In der zweiten Variante werden alle Prädikatoren in das Modell integriert und suksessive nach einander entfernt. Wiederum endet das Verfahren sobald kein Prädiktor mehr weggelassen werden kann ohne dass ein gewisses Kriterium unterschritten wird.
+
+Die Aufnahme einer neuen Variable kann dazu führen, dass eine bereits im Modell vorhandene Variable obsolet wird. 
+Um diesem Umstand Rechnung zu tragen werden oft forward selection und backward elimination kombiniert \cite[p. 461]{bortz2011}. 
+
+In seltenen Fällen kann es vorkommen, dass zwei Variablen für sich in die Regressionsgleichung aufgenommen die Vorhersage kaum verbessern und das Kriterium nicht erfüllen. Zusammen leisten sie jedoch  einen substantiellen Beitrag \cite[p.261]{jacob2003applied}. 
+Schrittweise Verfahren sind entsprechend nicht in der Lage solche Effekte mit zu berücksichtigen. 
+
+Zentrales Element der schrittweisen Regression ist das Kriterium zur Beurteilung der  Modellanpassung, welches besagt, weshalb und wann ein Modell als akzeptabel zu betrachten ist. Als Folge dessen wird damit auch die Anzahl relevanter Prädiktoren bestimmt. Im Laufe der Zeit wurden diverse Kriterien definiert, welche alle für sich ihre Berechtigung haben.
+Einteilen lassen sie sich in Kriterien, welche (a) sich auf die Beurteilung innerhalb des Trainingsdatensatzes beschränken oder (b) die Generalisierbarkeit ausserhalb des Trainingsdatensatzes zu berücksichtigen versuchen. Letztere werden im Abschnitt der Überanpassung beschrieben.
+
+Das Bestimmtheistmass bietet erste Hinweise zur Modellgüte, wird in schrittweisen Verfahren jedoch nicht als Kriterium per se eingesetzt. 
+Im Fall der multiplen Regression entspricht das Bestimmtheistmass  dem Quadrat des multiplen Korrelationskoeffizienten $R^2$ und  besagt wie viel systematische Varianz durch das Modell aufgeklärt  wird. 
+Das Bestimmtheismass steigt mit der Anzahl der Prädiktoren $p$, insbesondere bei kleinem Stichprobenumfang $n$, weshalb eine Schrumpfungskorrektur vorgenommen werden muss \cite[p. 451]{bortz2011}. 
+
+\begin{equation}
+\bar R^2=1-\frac{\displaystyle \frac{1}{n-p-1} \sum_{i=1}^n (Y_i-\hat{Y}_i)^2}{\displaystyle \frac{1}{n-1} \sum_{i=1}^n (Y_i-\bar{Y})^2}
+\tag{korrigiertes Bestimmtheitsmass}
+\end{equation}
+
+Insbesondere bei kleinem $R^2$ sollte auf Signifikanz getestet werden, entsprechend werden Modelle in schrittweisen Verfahren nicht einzig aufgrund von $R^2$ selektiert sondern aufgrund des Signifikanzniveaus. 
+
+Beim Signifikanztest als Kriterium wird das Verfahren beendet, wenn kein Prädikator mehr hinzugefügt werden kann, der das Vorhersagepotential signifikant erhöht \cite[p.48]{bendel1977comparison}. 
+Das vergleichen zweier Regressionsgleichungen mittels Signifikanztest bedingt, dass diese geschachtelt sein müssen, das kleinere Modell muss im grösseren enthalten sein \cite[p. 508]{jacob2003applied}.
+Das gewählte Signifikanzniveau ist eigentlich unbegründet gewählt \cite[p. 174]{weakliem2004introduction}. \citeA[p. 269]{derksen2011backward} diskutieren mehrere Empfehlungen für Signifikanzniveaus und weisen darauf hin, das sich über mehrere Tests der $\alpha$-Fehler kumuliert. 
+In  Simulationen mit artifiziellen Daten zeigen \citeA{mundry2009stepwise} das  Problem multipler Tests beispielhaft auf. 
+Daraus resultierend lehnen sie die Verwendung der schrittweisen Regression mittels Signifikanztestes gar ab.
+
+Ein weitere Schwäche des Hypothesentestens ist der Einfluss der Stichtprobengrösse. So kann bei genügend grossem Umfang nahezu jedes Modell  signifikant werden, was wiederum zu komplexen und überangepassten Modellen führt \cite[p.173]{weakliem2004introduction}.
+
+Entgegen dem exhaustiven Verfahren besteht bei schrittweisen das Problem, dass unter Umständen nicht das optimale Modell gefunden wird. 
+\citeA[p. 462]{bortz2011} bezeichnen diese Verfahren eher zu den explorativen gehörend, da die Nützlichkeitsunterschiede, welche oft nur geringe statistische Bedeutung haben, das Modell bestimmen.
+\citeA[p. 56ff]{harrell2001regression} lehnt das Verfahren gar ab und führt ins Feld, dass sämtliche statistischen Prinzipien verletzt würden. 
+\citeA{berk1978comparing} zeigte jedoch in einem Vergleich, dass die durchschnittliche Differenz der Fehlerquadratsummen zwischen exhaustiven und schrittweiser Regression kaum 7\% übertrifft. 

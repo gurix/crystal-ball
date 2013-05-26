@@ -1,0 +1,20 @@
+\section{Einführung}
+Das Standardverfahren um eine \Gls{glos:kriteriumsvariable} durch \Glspl{glos:praediktorvariable} vorherzusagen stellt die Regressionsanalyse dar.
+Begründet wurde dieses Verfahren durch Carl Friedrich Gauss in seiner Schrift, in der er, mit Hilfe der Methode der kleinsten Quadrate, die Bewegung der Himmelskörper um die Sonne im Kegelschnitt beschrieb \cite{gauss1809theoria}. 
+
+Im Unterschied zur einfachen linearen Regression, werden in einem multiplen Regressionsmodell mehrere Prädiktoren $p$ mit einbezogen. 
+Es resultiert eine Regressionsgleichung welche zur Vorhersage einer Kriteriumsvariable aufgrund mehrerer Prädikatorvariablen genutzt wird  \cite[S. 448]{bortz2011}. 
+\begin{equation}
+x_i = \beta_0 + \beta_1\cdot x_{i1} + ... +  \beta_p\cdot x_{ip} + \epsilon_i
+\tag{multiple lineare Regression}
+\end{equation}
+Beim klassisch hypothesengeleiteten Vorgehen wird eine Hypothese definiert, welche empirisch getestet wird.
+Der empirische Test wiederum ist ein Modell, in unserem Fall eine Regressionsgleichung, welches aufgrund theoretischer Überlegungen erstellt wurde.
+Wenn es jedoch keine klaren theoretischen Gründe gibt potentielle in Frage kommende Prädiktorvariablen in das Modell auf zu nehmen werden mehrere Modelle geschätzt und das mit der besten und stabilsten Vorhersagekraft verwendet.
+Bei komplexen Modellen mit vielen Prädiktoren werden Modelle mittels automatischer Verfahren geschätzt und selektiert.
+Ein zentrales Problem solcher Verfahren ist, dass sie dazu neigen zu komplexe Modelle zu schätzen. 
+Komplexe Modelle können sehr gute Vorhersagen liefern innerhalb des Trainingsdatensatz, doch oft scheitern die Vorhersage beim Versuch, diese zu generalisieren.  
+
+Im folgenden wird diskutiert wann und weshalb automatische Verfahren zur Modellwahl eingesetzt werden. 
+Anschliessend wird das exhaustive und schrittweise Verfahren vorgestellt und kritisch diskutiert.
+Die Frage nach der Generalisierbarkeit atomatisch geschätzter Modelle wird im Anschluss besprochen und die Kreuzvalidierung als Lösungsansatz genannt.
