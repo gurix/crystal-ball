@@ -5,19 +5,19 @@ Im Falle der Optimierung gilt es insbesondere ein zu stark an die Trainingsdaten
 Einfachere Modelle sind in der Regel stabiler, was wiederum die Generalisierbarkeit erhöht.
 Ziel ist es hierbei Prädikatoren mit geringer Vorhersagekraft zu eliminieren. Mittels exhaustiver Verfahren können sämtliche Kombinationen von den im Modell enthaltenen Prädikatoren geschätzt werden.
 Aus diesem Set meist einfacherer Modelle kann mittels Kreuzvalidierung die durchschnittliche Fehlvorhersage berechnet werden. Im Idealfall wird ein einfacheres Modell gefunden, das die Daten generell besser vorhersagt als das komplexe Modell.
-Der Vorteil exhaustiver Verfahren gegenüber den standardmässig eingesetzten schrittweisen Verfahren ist das das optimale Modell gefunden wird, insbesondere in Kombination mit der Kreuzvalidierung.
+Der Vorteil exhaustiver Verfahren gegenüber den standardmässig eingesetzten schrittweisen Verfahren ist, dass das optimale Modell gefunden wird, insbesondere in Kombination mit der Kreuzvalidierung.
 Der erhöhte Rechenaufwand sollte heutzutage nicht mehr ins Gewicht fallen, insbesondere da in der Psychologie meist nur eine Handvoll Prädikatoren ein Modell beschreiben.  
 
 Die explorative Anwendung ist verbreiteter und dient dem schätzen von Modellen ohne klare theoretische Begründung.
-Eine Auslese potentieller Prädikatoren sollte möglichst unkorreliert sein um der Multikolinearität vorzubeugen. Bei genügend grossem Stichprobenumfang und einer mässigen Anzahl an potentiellen Prädiktoren führt auch hier das exhaustive Verfahren gefolgt von einer Kreuzvalidierung zur optimalen und stabilsten Vorhersage. In der psychologischen Forschung ist der Stichprobenumfang oft knapp bemessen. Kann aufgrund des Stichprobenumfangs eine Kreuzvalidierung nicht verlässlich geschätzt werden kommen schrittweise Verfahren zum Einsatz. Dabei werden Prädikatoren schrittweise hinzugefügt oder eliminiert, bis ein zuvor bestimmtes Kriterium nicht mehr erfüllt werden kann. Das Kriterium  besagt weshalb und wann ein Modell als akzeptabel zu betrachten ist.
+Eine Auslese potentieller Prädikatoren sollte möglichst unkorreliert sein um der Multikolinearität vorzubeugen. Bei genügend grossem Stichprobenumfang und einer mässigen Anzahl an potentiellen Prädiktoren führt auch hier das exhaustive Verfahren gefolgt von einer Kreuzvalidierung zur optimalen und stabilsten Vorhersage. In der psychologischen Forschung ist der Stichprobenumfang oft knapp bemessen. Kann aufgrund des Stichprobenumfangs eine Kreuzvalidierung nicht verlässlich geschätzt werden, kommen schrittweise Verfahren zum Einsatz. Dabei werden Prädikatoren schrittweise hinzugefügt oder eliminiert, bis ein zuvor bestimmtes Kriterium nicht mehr erfüllt werden kann. Das Kriterium  besagt weshalb und wann ein Modell als akzeptabel zu betrachten ist.
 Es soll ein Kriterium herbei gezogen werden, welches die Anzahl der Prädiktoren im Modell berücksichtigt um einer Überanpassung entgegen zu wirken.
 Akaikes Informationskriterium als zuverlässliches Kriterium schrittweiser Regression erwiesen.  
 
 \citeA[p. 57]{harrell2001regression} erwähnte eine ganz generelle Schwierigkeit: ``It allows us to not think about the problem.''.
 Moderne leicht zu bedienende Statistikprogramme gepaart mit der Möglichkeit schier grenzenloser Rechenkapazität verführen einem nach Effekten zu fischen und \gls{glos:datamining} zu betreiben.
 Der Einsatz automatisierter Verfahren zur Bestimmung von Regressionsgleichungen ist umstritten. 
-Während die einen Autoren dies als ein probates expoloratives Mittel ansehen lehnen andere insbesondere die schrittweise Regression ab. 
+Während die einen Autoren dies als ein probates Mittel ansehen lehnen andere insbesondere die schrittweise Regression ab. 
 Schrittweise verfahren halten sich auch heute noch hartnäckig obschon es keinen Grund gibt nicht vollumfänglich alle Modelle durch zu rechnen. 
 Die Rechenkapazität sowie die nötige Software ist vorhanden. 
-Forschende sollten sich vom Gedanken lösen das Resultat gleich unmittelbar zu bekommen und eine dem Computer eine Kaffeepause lang die Möglichkeit geben das optimale Resultat zu finden.
-Zu guter letzt kann man auch hier die Faustformel anwenden, dass das simpelste Verfahren das beste Resultat ergibt.
+Forschende sollten sich vom Gedanken lösen das Resultat gleich unmittelbar zu bekommen und dem Computer eine Kaffeepause lang die Möglichkeit geben, das optimale Resultat zu finden.
+Zu guter Letzt kann man auch hier die Faustregel anwenden, dass das simpelste Verfahren das beste Resultat ergibt.

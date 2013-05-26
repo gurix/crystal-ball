@@ -1,7 +1,7 @@
-\section{Automtaische Modellwahlverfahren}
-Zu beginn der Psychologischen Forschung mussten Modelle von Hand berechnet werden. Zwangsläufig wurden wenige Prädikatoren erhoben und einfache Modelle Gerechnet. 
+\section{Automatische Verfahren zur Prädiktorauswahl}
+Zu beginn der Psychologischen Forschung mussten Modelle von Hand berechnet werden. Zwangsläufig wurden wenige Prädikatoren erhoben und einfache Modelle gerechnet. 
 Friedman analysierte beispielsweise 1944 die Langlebigkeit von Turbinenschaufeln in Abhängigkeit von Stress, Temperatur und einigen Legierungsparametern. 
-Zwar wurde die Berechnung nicht mehr von Hand durchgeführt, doch benötigte eine Regressionsschätzung inklusive Berechnung der Teststatistiken rund 40 Stunden \cite[p.2]{armstrong2011illusions}. Jeder durchschnittliche Computer erledigt dies heutzutage Sekundenbruchteile. 
+Zwar wurde die Berechnung nicht mehr von Hand durchgeführt, doch benötigte eine Regressionsschätzung inklusive Berechnung der Teststatistiken rund 40 Stunden \cite[p.2]{armstrong2011illusions}. Jeder durchschnittliche Computer erledigt dies heutzutage in Sekundenbruchteilen. 
 Mit dem technische Fortschritt einhergehend wurden Verfahren entwickelt, welche alle möglichen Kombinationen von Prädiktoren inklusiver ihrer Interaktionen berücksichtigen und gegeneinander testen.
 
 Es gilt also das ``beste'' Modell zu schätzen. 
@@ -16,7 +16,7 @@ Zur Beurteilung der Modellgüte kann die mittlere quadratische Abweichung herang
 Das Modell mit der kleinsten Fehlerquadratsumme $SSE_p$ wird als das  optimale Modell bezeichnet \cite[p. 6]{thompson1978selection}. 
 
 
-Da alle Möglichen Kombinationen durch gerechnet werden, wird das  Modell gefunden, das den Trainingsdatensatz am besten Vorhersagt.
+Da alle Möglichen Kombinationen durch gerechnet werden, wird das  Modell gefunden, das den Trainingsdatensatz am besten vorhersagt.
 \citeA[p.6]{thompson1978selection} sieht einzig den Nachteil darin, dass der Rechenaufwand exponentiell mit der Anzahl zu berücksichtigender Prädikatoren steigt. 
 Es müssen immer $2^p-1$ Modelle berechnet werden, bei 5 Prädikatoren sind dies 31 Modelle, bei 10 bereits 1023 usw.
 Während früher eingeschränkte Rechenkapazität oft ein ökonomischer Faktor war - es musste Rechenzeit in einem Rechenzentrum reserviert werden - spielt die Rechengeschwindigkeit auf modernen Systemen eine untergeordnete Rolle. 
@@ -34,20 +34,20 @@ Innerhalb der schrittweisen Verfahren unterscheidet man zwischen \textit{forward
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.5\textheight]{forward_stepwise.png}
-	\caption{Forward Selection}
+	\caption{Forward Selection. Das Flussdiagramm beschreibt den schrittweisen Aufbau eines neuen Modells aus dem leeren Modell durch Hinzufügen potentieller Prädiktoren.}
 	\label{fig:forward_stepwise}
 \end{figure}
 Ausgehend vom leeren Modell werden in der ersten Variante schrittweise weitere Variable der Nützlichkeit nach in das Modell integriert. Dies dauert so lange an, bis kein Prädiktor mehr gefunden wird, der ein gewisses Kriterium erfüllt.
 \begin{figure}[H]
 	\centering
 	\includegraphics[height=0.5\textheight]{backward_stepwise.png}
-	\caption{Backward Elimination}
+	\caption{Backward Elimination. Das Flussdiagramm beschreibt die schrittweise Elimination von unnützen Prädiktoren aus dem vollen Modell.}
 	\label{fig:backward_stepwise}
 \end{figure}
 In der zweiten Variante werden alle Prädikatoren in das Modell integriert und suksessive nach einander entfernt. Wiederum endet das Verfahren sobald kein Prädiktor mehr weggelassen werden kann ohne dass ein gewisses Kriterium unterschritten wird.
 
 Die Aufnahme einer neuen Variable kann dazu führen, dass eine bereits im Modell vorhandene Variable obsolet wird. 
-Um diesem Umstand Rechnung zu tragen werden oft forward selection und backward elimination kombiniert \cite[p. 461]{bortz2011}. 
+Um diesem Umstand Rechnung zu tragen werden oft Forward Selection und Backward Elimination kombiniert \cite[p. 461]{bortz2011}. 
 
 In seltenen Fällen kann es vorkommen, dass zwei Variablen für sich in die Regressionsgleichung aufgenommen die Vorhersage kaum verbessern und das Kriterium nicht erfüllen. Zusammen leisten sie jedoch  einen substantiellen Beitrag \cite[p.261]{jacob2003applied}. 
 Schrittweise Verfahren sind entsprechend nicht in der Lage solche Effekte mit zu berücksichtigen. 
@@ -55,8 +55,7 @@ Schrittweise Verfahren sind entsprechend nicht in der Lage solche Effekte mit zu
 Zentrales Element der schrittweisen Regression ist das Kriterium zur Beurteilung der  Modellanpassung, welches besagt, weshalb und wann ein Modell als akzeptabel zu betrachten ist. Als Folge dessen wird damit auch die Anzahl relevanter Prädiktoren bestimmt. Im Laufe der Zeit wurden diverse Kriterien definiert, welche alle für sich ihre Berechtigung haben.
 Einteilen lassen sie sich in Kriterien, welche (a) sich auf die Beurteilung innerhalb des Trainingsdatensatzes beschränken oder (b) die Generalisierbarkeit ausserhalb des Trainingsdatensatzes zu berücksichtigen versuchen. Letztere werden im Abschnitt der Überanpassung beschrieben.
 
-Das Bestimmtheistmass bietet erste Hinweise zur Modellgüte, wird in schrittweisen Verfahren jedoch nicht als Kriterium per se eingesetzt. 
-Im Fall der multiplen Regression entspricht das Bestimmtheistmass  dem Quadrat des multiplen Korrelationskoeffizienten $R^2$ und  besagt wie viel systematische Varianz durch das Modell aufgeklärt  wird. 
+Interessiert uns die Modellgüte innerhalb des Trainingsdatensatzes bietet das Bestimmtheitsmass erste Hinweise. Im Fall der multiplen Regression entspricht dies dem Quadrat des multiplen Korrelationskoeffizienten $R^2$ und  besagt wie viel systematische Varianz durch das Modell aufgeklärt  wird. 
 Das Bestimmtheismass steigt mit der Anzahl der Prädiktoren $p$, insbesondere bei kleinem Stichprobenumfang $n$, weshalb eine Schrumpfungskorrektur vorgenommen werden muss \cite[p. 451]{bortz2011}. 
 
 \begin{equation}
