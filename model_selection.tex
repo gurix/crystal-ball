@@ -2,7 +2,7 @@
 Zu beginn der Psychologischen Forschung mussten Modelle von Hand berechnet werden. Zwangsläufig wurden wenige Prädikatoren erhoben und einfache Modelle gerechnet. 
 Friedman analysierte beispielsweise 1944 die Langlebigkeit von Turbinenschaufeln in Abhängigkeit von Stress, Temperatur und einigen Legierungsparametern. 
 Zwar wurde die Berechnung nicht mehr von Hand durchgeführt, doch benötigte eine Regressionsschätzung inklusive Berechnung der Teststatistiken rund 40 Stunden \cite[p.2]{armstrong2011illusions}. Jeder durchschnittliche Computer erledigt dies heutzutage in Sekundenbruchteilen. 
-Mit dem technische Fortschritt einhergehend wurden Verfahren entwickelt, welche alle möglichen Kombinationen von Prädiktoren inklusiver ihrer Interaktionen berücksichtigen und gegeneinander testen.
+Mit dem technische Fortschritt einhergehend wurden Verfahren entwickelt, welche alle möglichen Kombinationen von Prädiktoren inklusive ihrer Interaktion berücksichtigen und gegeneinander testen.
 
 Es gilt also das ``beste'' Modell zu schätzen. 
 Gemeint ist mit dem ``besten'' Modell das, welches innerhalb des Trainingsdatensatzes, die beste Vorhersage liefert. 
@@ -17,7 +17,7 @@ Das Modell mit der kleinsten Fehlerquadratsumme $SSE_p$ wird als das  optimale M
 
 
 Da alle Möglichen Kombinationen durch gerechnet werden, wird das  Modell gefunden, das den Trainingsdatensatz am besten vorhersagt.
-\citeA[p.6]{thompson1978selection} sieht einzig den Nachteil darin, dass der Rechenaufwand exponentiell mit der Anzahl zu berücksichtigender Prädikatoren steigt. 
+\citeA[p.6]{thompson1978selection} sieht einzig den Nachteil darin, dass der \Gls{glos:rechenaufwand} exponentiell mit der Anzahl zu berücksichtigender Prädikatoren steigt. 
 Es müssen immer $2^p-1$ Modelle berechnet werden, bei 5 Prädikatoren sind dies 31 Modelle, bei 10 bereits 1023 usw.
 Während früher eingeschränkte Rechenkapazität oft ein ökonomischer Faktor war - es musste Rechenzeit in einem Rechenzentrum reserviert werden - spielt die Rechengeschwindigkeit auf modernen Systemen eine untergeordnete Rolle. 
 Insbesondere in der psychologischen Forschung muss oft nur eine Handvoll Prädikatoren in die Schätzung einbezogen werden.
@@ -44,7 +44,7 @@ Ausgehend vom leeren Modell werden in der ersten Variante schrittweise weitere V
 	\caption{Backward Elimination. Das Flussdiagramm beschreibt die schrittweise Elimination von unnützen Prädiktoren aus dem vollen Modell.}
 	\label{fig:backward_stepwise}
 \end{figure}
-In der zweiten Variante werden alle Prädikatoren in das Modell integriert und suksessive nach einander entfernt. Wiederum endet das Verfahren sobald kein Prädiktor mehr weggelassen werden kann ohne dass ein gewisses Kriterium unterschritten wird.
+In der zweiten Variante werden alle Prädikatoren in das Modell integriert und sukzessive nach einander entfernt. Wiederum endet das Verfahren sobald kein Prädikator mehr weggelassen werden kann ohne dass ein gewisses Kriterium unterschritten wird.
 
 Die Aufnahme einer neuen Variable kann dazu führen, dass eine bereits im Modell vorhandene Variable obsolet wird. 
 Um diesem Umstand Rechnung zu tragen werden oft Forward Selection und Backward Elimination kombiniert \cite[p. 461]{bortz2011}. 
@@ -56,7 +56,7 @@ Zentrales Element der schrittweisen Regression ist das Kriterium zur Beurteilung
 Einteilen lassen sie sich in Kriterien, welche (a) sich auf die Beurteilung innerhalb des Trainingsdatensatzes beschränken oder (b) die Generalisierbarkeit ausserhalb des Trainingsdatensatzes zu berücksichtigen versuchen. Letztere werden im Abschnitt der Überanpassung beschrieben.
 
 Interessiert uns die Modellgüte innerhalb des Trainingsdatensatzes bietet das Bestimmtheitsmass erste Hinweise. Im Fall der multiplen Regression entspricht dies dem Quadrat des multiplen Korrelationskoeffizienten $R^2$ und  besagt wie viel systematische Varianz durch das Modell aufgeklärt  wird. 
-Das Bestimmtheismass steigt mit der Anzahl der Prädiktoren $p$, insbesondere bei kleinem Stichprobenumfang $n$, weshalb eine Schrumpfungskorrektur vorgenommen werden muss \cite[p. 451]{bortz2011}. 
+Das Bestimmtheitsmass steigt mit der Anzahl der Prädiktoren $p$, insbesondere bei kleinem Stichprobenumfang $n$, weshalb eine Schrumpfungskorrektur vorgenommen werden muss \cite[p. 451]{bortz2011}. 
 
 \begin{equation}
 \bar R^2=1-\frac{\displaystyle \frac{1}{n-p-1} \sum_{i=1}^n (Y_i-\hat{Y}_i)^2}{\displaystyle \frac{1}{n-1} \sum_{i=1}^n (Y_i-\bar{Y})^2}
@@ -69,9 +69,9 @@ Beim Signifikanztest als Kriterium wird das Verfahren beendet, wenn kein Prädik
 Das vergleichen zweier Regressionsgleichungen mittels Signifikanztest bedingt, dass diese geschachtelt sein müssen, das kleinere Modell muss im grösseren enthalten sein \cite[p. 508]{jacob2003applied}.
 Das gewählte Signifikanzniveau ist eigentlich unbegründet gewählt \cite[p. 174]{weakliem2004introduction}. \citeA[p. 269]{derksen2011backward} diskutieren mehrere Empfehlungen für Signifikanzniveaus und weisen darauf hin, das sich über mehrere Tests der $\alpha$-Fehler kumuliert. 
 In  Simulationen mit artifiziellen Daten zeigen \citeA{mundry2009stepwise} das  Problem multipler Tests beispielhaft auf. 
-Daraus resultierend lehnen sie die Verwendung der schrittweisen Regression mittels Signifikanztestes gar ab.
+Daraus resultierend lehnen sie die Verwendung der schrittweisen Regression mittels Signifikanztest gar ab.
 
-Ein weitere Schwäche des Hypothesentestens ist der Einfluss der Stichtprobengrösse. So kann bei genügend grossem Umfang nahezu jedes Modell  signifikant werden, was wiederum zu komplexen und überangepassten Modellen führt \cite[p.173]{weakliem2004introduction}.
+Ein weitere Schwäche des Hypothesentestens ist der Einfluss der Stichprobengrösse. So kann bei genügend grossem Umfang nahezu jedes Modell  signifikant werden, was wiederum zu komplexen und überangepassten Modellen führt \cite[p.173]{weakliem2004introduction}.
 
 Entgegen dem exhaustiven Verfahren besteht bei schrittweisen das Problem, dass unter Umständen nicht das optimale Modell gefunden wird. 
 \citeA[p. 462]{bortz2011} bezeichnen diese Verfahren eher zu den explorativen gehörend, da die Nützlichkeitsunterschiede, welche oft nur geringe statistische Bedeutung haben, das Modell bestimmen.

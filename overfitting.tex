@@ -7,13 +7,13 @@ Insbesondere Gigerenzer demonstrierte eindrucksvoll wie mit einfachen Rekognitio
 Komplexe Modelle können sehr gute Vorhersagen innerhalb des Trainingsdatensatz liefern, doch  scheitern oft beim Versuch, der Generalisierung.  
 
 Die Illusion der Komplexität ist auch in der Statistik anzutreffen \cite[p. 3]{armstrong2011illusions}. 
-Im Kontext der Modellwahl äussert sich dies in Form der Überanpassung. Das heisst, dass das Modell zu sehr an die Testdaten angepasst ist.
-Insbesondere Modelwahlverfahren, welche die Anzahl der Prädikatoren nicht abstrafen, sind davon betroffen.
+Im Kontext der Modellwahl äussert sich dies in Form der Überanpassung. Das heisst, dass das Modell zu sehr an den Trainingsdatensatz angepasst ist.
+Insbesondere Modellwahlverfahren, welche die Anzahl der Prädikatoren nicht bestrafen, sind davon betroffen.
 Als Einflussfaktoren seitens der Daten sind Repräsentativität und Stichprobengrösse zu nennen. 
 Mit steigendem Stichprobenumfang und höheren Repräsentativität sinkt die Überanpassung und steigt die Stabilität der Vorhersage.
 
 \subsection{Kriterienbasierte Strategien}
-Die bisher beschriebenen Modellwahlverfahren fokusieren sich darauf, anhand der gegebenen Daten das ``beste'' Modell zu finden.
+Die bisher beschriebenen Modellwahlverfahren fokussieren sich darauf, anhand der gegebenen Daten das ``beste'' Modell zu finden.
 Kriterienbasierende Strategien zur Vermeidung der Überanpassung beurteilen nicht nur die Güte des Modells, sondern strafen auch Komplexität ab.
 Je komplexer ein Regressionsmodell wird, desto besser muss die Vorhersage stimmen um die Komplexität zu rechtfertigen.
 
@@ -23,7 +23,7 @@ C_p={SSE_p \over \sigma^2} - n + 2p
 \tag{Mallows's $C_p$}
 \end{equation}
 Angestrebt wurde dabei alle wichtigen Prädikatoren zu berücksichtigen. 
-Das ``beste'' Modell ist das mit (a) dem niedrigsten $C_p$-Wert, der (b) möglichst gleich $p$ ist \cite{gilmour1996interpretation}. Angewendet wird dieses Kriterium insbesondere in Kombination mit dem exhastiven Verfahren.
+Das ``beste'' Modell ist das mit (a) dem niedrigsten $C_p$-Wert, der (b) möglichst gleich $p$ ist \cite{gilmour1996interpretation}. Angewendet wird dieses Kriterium insbesondere in Kombination mit dem exhaustiven Verfahren.
 
 Die bisher auf der Methode der kleinsten Quadrate basierenden schrittweisen Verfahren bedingen, dass die Prädikatoren geschachtelt sind. 
 Das soll heissen, dass jeweils alle Prädiktoren des kleineren Modell im grösseren enthalten sein müssen. 
@@ -44,16 +44,16 @@ BIC = n\log(\sigma^2) + p\log(n)
 \tag{BIC}
 \end{equation}
 
-Durch die Berücksichtigung der Komplexität im Kriterium ist es möglich sowohl im schrittweisen Verfahren die Anzahl der Prädiktoren zu verringern.  Berücksichtigt werden dabei jedoch nur Daten aus dem Trainingsdatensatz. Entsprechend fehlt die Möglichkeit diese Vereinfachung empirisch zu rechtfertigen. Das soll heissen, dass man nicht sagen kann ob ein komplexeres und entsprechend exakteres Modell gerade in diesem Fall wirklich schlechter generalisierbar wäre. Um dies zu bewerkstelligen müssen die Vorhersagen der Modelle mittels unabhängiger Datensätze verglichen werden, was mittels Kreuzvalidierung erreicht werden kann. 
+Durch die Berücksichtigung der Komplexität im Kriterium ist es möglich sowohl im schrittweisen Verfahren die Anzahl der Prädiktoren zu verringern.  Berücksichtigt werden dabei jedoch nur Daten aus dem Trainingsdatensatz. Entsprechend fehlt die Möglichkeit diese Vereinfachung empirisch zu rechtfertigen. Das soll heissen, dass man nicht sagen kann ob ein komplexeres und entsprechend exaktes Modell gerade in diesem Fall wirklich schlechter generalisierbar wäre. Um dies zu bewerkstelligen müssen die Vorhersagen der Modelle mittels unabhängiger Datensätze verglichen werden, was mittels Kreuzvalidierung erreicht werden kann. 
 
 \subsection{Kreuzvalidierung}
-Die Stabiltität eines Modelles lässt sich durch den Vergleiche mit unabhängigen Stichproben ermitteln.
+Die Stabilität eines Modells lässt sich durch den Vergleiche mit unabhängigen Stichproben ermitteln.
 Zu diesem Zweck kommen sogenannte Kreuzvalidierungsverfahren zum Einsatz.
 
 Die Idee hinter der Kreuzvalidierung liegt darin, die Daten aufzuteilen. Zum einen in eine Trainingsstichprobe, anhand der die Gleichung geschätzt wird, zum anderen in eine oder mehrere zusätzliche Teststichproben, anhand derer die Stabilität validiert wird. Kennwert der Stabilität ist meist die durchschnittliche Fehlerquote der einzelnen Vorhersagen \cite[p. 3]{arlot2010survey}. 
 
 Die Frage stellt sich, welchen Platz die Kreuzvalidierung in der automatisierten Modellwahl einnimmt.
-Kreuzvalidierungen können über ein Set von $n$ Regressionsgleichungen durchgeführt werden, beispielsweise  potentielle Modelle nach einer schrittweisen Regression \cite[p. 12]{arlot2010survey}.
+Die Kreuzvalidierung kann über ein Set von $n$ Regressionsgleichungen durchgeführt werden, beispielsweise  potentielle Modelle nach einer schrittweisen Regression \cite[p. 12]{arlot2010survey}.
 $n$ potentiellen Modelle werden validiert, wobei unter Umständen das Stabilste nicht gleich dem Vielversprechendsten aus der vorangegangenen Selektion ist.
 Überangepasste Modelle können somit eliminiert werden und an deren Platz rücken einfachere und stabilere Modelle.
 Der Vorteil dieses Vorgehens liegt darin das (a) die Validierung komplett von der Modellselektion getrennt werden kann und (b) es nur $n$ Durchgänge benötigt. 
@@ -62,12 +62,12 @@ Bei der schrittweisen Regression haben wir gesehen, dass das ``beste'' Modell ni
 Entsprechendes gilt für die Stabilität, was zur Konsequenz führen kann, dass zwar gute Modelle gefunden werden, diese jedoch allesamt nicht stabil genug sind oder das Stabilste schlicht nicht gefunden wird. 
 \citeA[p. 12]{arlot2010survey} nennen noch die Möglichkeit die Stabilität in die Modellselektion zu integrieren und als  Kriterium zu berücksichtigen. 
 Zu jeder Modellschätzung wird deren Stabilität berechnet und Modelle welche keine genügenden Werte aufweisen werden abgewiesen. 
-Ein Nachteil dessen ist der höhrere Rechenaufwand, da jedes Modell zusätzliche Durchgänge benötigt. 
+Ein Nachteil dessen ist der höhere Rechenaufwand, da jedes Modell zusätzliche Durchgänge benötigt. 
 
 Kreuzvalidierungsverfahren unterscheiden sich in erster Linie anhand der Strategie, mit der die Daten ``getrennt'' werden.
-In der Regel wird dafür ein genug grosser Datensatz herangezogen und unterteilt, wobei vorausgesetzt wird, dass die Teilstichproben unabhängig und gleich verteilt sind. 
+In der Regel wird dafür ein genug grosser Datensatz herangezogen und unterteilt, wobei vorausgesetzt wird, dass die Untermengen unabhängig und gleich verteilt sind. 
 Bei $k$-Facher-Kreuzvalidierung wird der Datensatz in $k$ möglichst gleich grosse Teile aufgeteilt und $k$ Testläufe durchgeführt.
- Der Durchschnitt aus den Einzelfehlerquoten der k Durchläufe entspricht der Gesamtfehlerquote, welche für jede Lösung verglichen wird \cite[p. 14]{arlot2010survey}.
+Der Durchschnitt aus den Einzelfehlerquoten der $k$ Durchläufe entspricht der Gesamtfehlerquote, welche für jede Lösung verglichen wird \cite[p. 14]{arlot2010survey}.
 Je niedriger die Gesamtfehlerquote, desto stabiler ist die Regressionsgleichung.
 Um die Gleichverteilung der Untermengen zu gewährleisten, werden diese gelegentlich auch stratifiziert \cite{diamantidis2000unsupervised}. 
 Weitere Verfahren und deren Vergleiche finden sich bei \citeA{arlot2010survey}.
