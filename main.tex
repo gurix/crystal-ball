@@ -1,6 +1,5 @@
 \documentclass[german,12pt,doc]{apa}
 \usepackage[a4paper, left=25mm, right=40mm]{geometry}
-
 \usepackage{apacite}
 \usepackage{amsmath}
 \usepackage[german]{babel}
@@ -13,10 +12,11 @@
 \SetWatermarkLightness{0.8}
 \usepackage{setspace}
 \usepackage{graphicx}
+
 \usepackage{caption}
 \usepackage{prettyref}
 
-\usepackage[nonumberlist]{glossaries}
+\usepackage[nonumberlist,sanitize={name=false}]{glossaries}
 \makeglossaries
 
 \onehalfspacing
@@ -24,6 +24,7 @@
 \setlength{\parindent}{0pt}
 
 \usepackage[utf8]{inputenc}
+
 
 \usepackage[]{blindtext}
 \rightheader{Automatisierte Verfahren zur Prädiktorauswahl}
@@ -38,10 +39,14 @@
 \shorttitle{Prädiktorauswahl in Regressionsmodellen} 
 \author{Literaturarbeit vorgelegt von \\ Markus Graf (markus.graf@uzh.ch)}
 \date{\today}
-\affiliation{am  Psychologisches Institut der Universität Zürich\\ Betreut durch Dr. Christina Werner}
-\abstract{Ziel der multiplen Regression ist es Kriteriumsvariablen durch mehrere Prädiktorvariablen möglichst gut vorherzusagen. In diesem Kontext kommen Automatische Verfahren zur Prädiktorauswahl zur Anwendung, wenn für die Schätzung des Modells viele potentielle Prädikatoren zur Auswahl stehen, insbesondere wenn theoretische Grundlagen fehlen. Das exhaustive Verfahren in Kombination mit der Kreuzvalidierung ist die einzige Technik, die das beste und stabilste Modell findet. Schrittweise Verfahren kommen zur Anwendung bei kleinem Stichprobenumfang. Während früher aus Mangel an Rechenleistung standardmässig schrittweise Verfahren angewandt wurden soll heutzutage dem rechenintensiven exhaustiven Verfahren bevorzugt werden.
+\affiliation{am  Psychologisches Institut der Universität Zürich\\ Betreut durch Dr. Christina Werner\\ \today}
+\abstract{Ziel der multiplen Regression ist es Kriteriumsvariablen durch mehrere Prädiktorvariablen möglichst gut vorherzusagen. In diesem Kontext kommen Automatische Modellwahlverfahren zur Anwendung, wenn für die Schätzung des Modells viele potentielle Prädikatoren zur Auswahl stehen, insbesondere wenn theoretische Grundlagen fehlen. Das exhaustive Verfahren in Kombination mit der Kreuzvalidierung ist momentan die einzige Technik, die das beste und stabilste Modell findet. Schrittweise Verfahren kommen zur Anwendung bei kleinem Stichprobenumfang. Während früher aus Mangel an Rechenleistung standardmässig schrittweise Verfahren angewandt wurden soll heutzutage dem rechenintensiven exhaustiven Verfahren bevorzugt werden.
 }
 \maketitle
+\begin{center}
+\includegraphics[width=0.1\textwidth]{cc_by_sa.jpg}\\
+Dieses Werk bzw. Inhalt steht unter einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Unported Lizenz.
+\end{center}
 \setlength{\parindent}{0pt}
 \newpage
 \tableofcontents
@@ -59,12 +64,15 @@
 
 
 \input{discussion}
+
 \newpage
 \printglossaries 
 %\addcontentsline{toc}{chapter}{Glossar}
 \newpage
 \bibliographystyle{apacite} 
 \bibliography{literature}
+
+
 \newpage
 \section{Anhang}
 \subsection*{Selbstständigkeitserklärung zur Literaturarbeit am  Psychologischen Institut}
