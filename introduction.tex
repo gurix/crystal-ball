@@ -1,20 +1,20 @@
 \section{Einführung}
-Das Standardverfahren um eine \Gls{glos:kriteriumsvariable} durch \Glspl{glos:praediktorvariable} vorherzusagen stellt die Regressionsanalyse dar.
+Das Standardverfahren, um eine \Gls{glos:kriteriumsvariable} durch \Glspl{glos:praediktorvariable} vorherzusagen, stellt die Regressionsanalyse dar.
 Begründet wurde dieses Verfahren durch Carl Friedrich Gauss in seiner Schrift, in der er, mit Hilfe der Methode der kleinsten Quadrate, die Bewegung der Himmelskörper um die Sonne im Kegelschnitt beschrieb \cite{gauss1809theoria}. 
 
-Im Unterschied zur einfachen linearen Regression, werden in einem multiplen Regressionsmodell mehrere Prädiktoren $p$ mit einbezogen. 
-Es resultiert eine Regressionsgleichung welche zur Vorhersage einer Kriteriumsvariable aufgrund mehrerer Prädikatorvariablen genutzt wird  \cite[S. 448]{bortz2011}. 
+Im Unterschied zur einfachen linearen Regression werden in einem multiplen Regressionsmodell mehrere Prädiktoren $p$ mit einbezogen. 
+Es resultiert eine Regressionsgleichung, welche zur Vorhersage einer Kriteriumsvariable $y_i$ aufgrund mehrerer Prädiktorvariablen genutzt wird  \cite[S. 448]{bortz2011}. 
 \begin{equation}
-x_i = \beta_0 + \beta_1\cdot x_{i1} + ... +  \beta_p\cdot x_{ip} + \epsilon_i
+y_i = \beta_0 + \beta_1\cdot x_{i1} + ... +  \beta_p\cdot x_{ip} + \epsilon_i
 \tag{multiple lineare Regression}
 \end{equation}
 Beim klassisch hypothesengeleiteten Vorgehen wird eine Hypothese definiert, welche empirisch getestet wird.
 Der empirische Test wiederum ist ein Modell, in unserem Fall eine Regressionsgleichung, welche aufgrund theoretischer Überlegungen erstellt wurde.
 Wenn es jedoch keine klaren theoretischen Gründe gibt potentielle Prädiktorvariablen in das Modell aufzunehmen, werden mehrere Modelle geschätzt und jenes mit der besten und stabilsten Vorhersagekraft verwendet.
 Bei komplexen Modellen mit vielen Prädiktoren werden Modelle mittels automatischer Verfahren geschätzt und selektiert.
-Ein zentrales Problem solcher Verfahren ist, dass sie dazu neigen zu komplexe Modelle zu schätzen. 
-Komplexe Modelle können sehr gute Vorhersagen innerhalb des \Gls{glos:trainingsdatensatz}es liefern, doch scheitern gern beim Versuch generelle Vorhersagen zu treffen.
+Ein zentrales Problem solcher Verfahren ist, dass sie dazu neigen, zu komplexe Modelle zu schätzen. 
+Komplexe Modelle können sehr gute Vorhersagen innerhalb des \Gls{glos:trainingsdatensatz}es liefern, doch scheitern gern beim Versuch, generelle Vorhersagen zu treffen.
 
-Im folgenden wird diskutiert wann und weshalb automatische Verfahren zur Modellwahl eingesetzt werden. 
+Im folgenden wird diskutiert, wann und weshalb automatische Verfahren zur Modellwahl eingesetzt werden. 
 Anschliessend wird das exhaustive und schrittweise Verfahren vorgestellt und kritisch diskutiert.
 Die Frage nach der Generalisierbarkeit automatisch geschätzter Modelle wird im Anschluss besprochen und die \Gls{glos:kreuzvalidierung} als Lösungsansatz genannt.

@@ -13,7 +13,8 @@
 \usepackage{setspace}
 \usepackage{graphicx}
 
-\usepackage{caption}
+\usepackage[labelsep=space]{caption}
+
 \usepackage{prettyref}
 
 \usepackage[nonumberlist,sanitize={name=false}]{glossaries}
@@ -25,8 +26,6 @@
 
 \usepackage[utf8]{inputenc}
 
-
-\usepackage[]{blindtext}
 \rightheader{Automatisierte Verfahren zur Prädiktorauswahl}
 % Hurenkinder und Schusterjungen verhindern
 \clubpenalty10000
@@ -34,28 +33,35 @@
 \displaywidowpenalty=10000
 
 \begin{document}
+\begin{titlepage}
 
 \title{Automatische Verfahren zur Prädiktorauswahl in Regressionsmodellen}
 \shorttitle{Prädiktorauswahl in Regressionsmodellen} 
 \author{Literaturarbeit vorgelegt von \\ Markus Graf (markus.graf@uzh.ch)}
 \date{\today}
-\affiliation{am  Psychologisches Institut der Universität Zürich\\ Betreut durch Dr. Christina Werner\\ \today}
-\abstract{Ziel der multiplen Regression ist es Kriteriumsvariablen durch mehrere Prädiktorvariablen möglichst gut vorherzusagen. In diesem Kontext kommen Automatische Modellwahlverfahren zur Anwendung, wenn für die Schätzung des Modells viele potentielle Prädikatoren zur Auswahl stehen, insbesondere wenn theoretische Grundlagen fehlen. Das exhaustive Verfahren in Kombination mit der Kreuzvalidierung ist momentan die einzige Technik, die das beste und stabilste Modell findet. Schrittweise Verfahren kommen zur Anwendung bei kleinem Stichprobenumfang. Während früher aus Mangel an Rechenleistung standardmässig schrittweise Verfahren angewandt wurden soll heutzutage dem rechenintensiven exhaustiven Verfahren bevorzugt werden.
-}
+
+\affiliation{am  Psychologischen Institut der Universität Zürich\\ Betreut durch Dr. Christina Werner\\ \today}
 \maketitle
+\end{titlepage}
+\thispagestyle{empty}
+Ziel der multiplen Regression ist es Kriteriumsvariablen durch mehrere Prädiktor- variablen möglichst gut vorherzusagen. In diesem Kontext kommen Automatische Modellwahlverfahren zur Anwendung, wenn für die Schätzung des Modells viele potentielle Prädiktoren zur Auswahl stehen, insbesondere wenn theoretische Grundlagen fehlen. Das exhaustive Verfahren in Kombination mit der Kreuzvalidierung ist momentan die einzige Technik, die das beste und stabilste Modell findet. Schrittweise Verfahren kommen zur Anwendung bei kleinem Stichprobenumfang. Während früher aus Mangel an Rechenleistung standardmässig schrittweise Verfahren angewandt wurden, soll heutzutage das rechenintensive exhaustive Verfahren bevorzugt werden.
+
 \begin{center}
 \includegraphics[width=0.1\textwidth]{cc_by_sa.jpg}\\
 Dieses Werk bzw. Inhalt steht unter einer Creative Commons Namensnennung - Weitergabe unter gleichen Bedingungen 3.0 Unported Lizenz.
 \end{center}
 \setlength{\parindent}{0pt}
 \newpage
+\thispagestyle{empty}
+\begin{spacing}{0.01}
 \tableofcontents
+\end{spacing}
 \newpage
 
 \input{glossar}
 \input{introduction}
 \section{Recherche}
-Hauptquelle der Literatur-Recherche waren Artikel, welche via Google Scholar gefunden wurden. Grundlagen zu den Verfahren wurden mittels \citeA{bortz2011} und \citeA{jacob2003applied} erarbeitet. Der Fokus bei der Recherche wurde auf Artikel im Bereich der Psychologie gerichtet, es fanden sich jedoch auch  viele Artikel in anderen Fachbereichen, welche mit den selben Problemen konfrontiert sind. Kurz vorgestellt wurden die Verfahren von Carolin Strobl in der Vorlesung ``160 Psychologische Methoden: Datenerhebung, Analyse und Darstellung'' im Rahmen des Psychologie-Aufbaustudiums der Universität Zürich. Interessante Hinweise und praktische Beispiele fanden sich ausserdem in den Manuals von R.
+Hauptquelle der Literatur-Recherche waren Artikel, welche via Google Scholar gefunden wurden. Als Stichworte zu nennen sind \textit{stepwise model selection, stepwise regression criteria, model selection paradigm, cross validation, overfitting}. Grundlagen zu den Verfahren wurden mittels \citeA{bortz2011} und \citeA{jacob2003applied} erarbeitet. Der Fokus bei der Recherche wurde auf Artikel im Bereich der Psychologie gerichtet, es fanden sich jedoch auch  viele Artikel in anderen Fachbereichen, welche mit den selben Problemen konfrontiert sind. Kurz vorgestellt wurden die Verfahren von Carolin Strobl in der Vorlesung ``160 Psychologische Methoden: Datenerhebung, Analyse und Darstellung'' im Rahmen des Psychologie-Aufbaustudiums der Universität Zürich. Interessante Hinweise und praktische Beispiele fanden sich ausserdem in den Manuals von R \cite{R:core}.
 \input{why}
 \input{model_selection}
 \input{multikolinearitaet}
