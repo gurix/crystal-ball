@@ -71,7 +71,7 @@ In schrittweisen Verfahren wird nicht einzig aufgrund von $R^2$ selektiert sonde
 
 Beim Signifikanztest als Kriterium wird das Verfahren beendet, wenn kein Prädiktor mehr hinzugefügt werden kann, der das Vorhersagepotential signifikant erhöht \cite[p.48]{bendel1977comparison}. 
 Das Vergleichen zweier Regressionsgleichungen mittels Signifikanztest bedingt, dass diese geschachtelt sein müssen, das kleinere Modell muss im grösseren enthalten sein \cite[p. 508]{jacob2003applied}.
-Das gewählte Signifikanzniveau ist eigentlich unbegründet gewählt \cite[p. 174]{weakliem2004introduction}. \citeA[p. 269]{derksen2011backward} diskutieren mehrere Empfehlungen für Signifikanzniveaus und weisen darauf hin, das sich über mehrere Tests der $\alpha$-Fehler kumuliert. 
+Das gewählte Signifikanzniveau ist eigentlich arbiträr gewählt und eher als Konvention zu betrachten. Das Signifikanzniveau soll grundsätzlich die relativen Kosten der Irrtumswahrscheinlichkeit beschreiben \cite[p. 196]{hansen1999discussion}. \citeA[p. 269]{derksen2011backward} diskutieren mehrere Empfehlungen für Signifikanzniveaus und weisen darauf hin, das sich über mehrere Tests der $\alpha$-Fehler kumuliert. 
 In  Simulationen mit artifiziellen Daten zeigen \citeA{mundry2009stepwise} das  Problem multipler Tests beispielhaft auf. 
 Daraus resultierend lehnen sie die Verwendung der schrittweisen Regression mittels Signifikanztest gar ab.
 
@@ -80,4 +80,4 @@ Ein weitere Schwäche des Hypothesentestens ist der Einfluss der Stichprobengrö
 Entgegen dem exhaustiven Verfahren besteht bei Schrittweisen das Problem, dass unter Umständen nicht das optimale Modell gefunden wird. 
 \citeA[p. 462]{bortz2011} bezeichnen diese Verfahren eher als explorativ, da die Nützlichkeitsunterschiede, welche oft nur geringe statistische Bedeutung haben, das Modell bestimmen.
 \citeA[p. 56ff]{harrell2001regression} lehnt das Verfahren gar ab und führt ins Feld, dass sämtliche statistischen Prinzipien verletzt würden. 
-\citeA{berk1978comparing} zeigte jedoch in einem Vergleich, dass die durchschnittliche Differenz der Fehlerquadratsummen zwischen exhaustiven und schrittweiser Regression kaum 7\% übertrifft. 
+\citeA{berk1978comparing} zeigte in einem Vergleich, dass die durchschnittliche Differenz der Fehlerquadratsummen zwischen exhaustiver und schrittweiser Regression kaum 7\% übertrifft. Bei Modellen, welche im Allgemeinen bereits viel Varianz aufklären mag dies akzeptabel sein. Wenn hingegen zu befürchten ist, dass wenig Varianz aufgeklärt werden kann, könnte diese Differenz jedoch das Zünglein an der Waage sein.
