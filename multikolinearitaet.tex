@@ -1,10 +1,10 @@
 \section{Multikollinearität}
 \Gls{glos:Multikollinearitaet}, als hohe Korrelationen zwischen mehreren Prädiktoren, führt zu Problemen bei der automatischen Modellwahl. 
-In schrittweisen Verfahren ist es in solchen Fällen häufig vom Zufall abhängig welche der beteiligten Variablen als erste weggelassen beziehungsweise aufgenommen wird. 
+In schrittweisen Verfahren ist es in solchen Fällen häufig vom Zufall abhängig, welche der beteiligten Variablen als erste weggelassen, beziehungsweise aufgenommen wird. 
 Ein Anstieg der Korrelation zwischen Prädiktoren hat zur Folge, dass (a) die p-Werte bei Signifikanztests sinken, (b) schwache Prädiktoren entgegen den starken eher fälschlicherweise ausgeschlossen werden, (c) korrekt hoch signifikante Prädiktoren werden eher ausgeschlossen wenn die Korrelation zwischen einem konfundierenden Prädikator und dem Kriterium steig und (d) selbst wenn die Korrelation zwischen konfundierendem Prädikator und Kriterium klein ist, besteht die Gefahr, dass korrekt schwach signifikante Prädiktoren nicht signifikant werden \cite[p. 2810]{graham2003confronting}.
 
 Es gilt die Voraussetzung, dass alle Prädiktoren erhoben wurden um das Modell zu definieren und diese sauber gemessen wurden. Bei Verletzung dieser Voraussetzung sind die Residuen nicht unabhängig und die Regressionskoeffizienten sind verzerrt \cite[p. 119]{jacob2003applied}.
-Doch gerade in der psychologischen Forschung lassen sich Ahbängigkeiten zwischen Prädiktoren meist schlecht vermeiden.
+Doch gerade in der psychologischen Forschung lassen sich Abhängigkeiten zwischen Prädiktoren meist schlecht vermeiden.
 Um bereits im Vorfeld Hinweise auf potentielle Kollinearität zu erhalten, empfiehlt es sich, die Kovarianzmatrix zwischen allen Prädiktoren vor der eigentlichen Auswahl zu betrachten.
 Eventuell wurde das selbe Merkmal mehrmals erhoben.
 Der Zusammenhang zwischen einer Prädikatorvariable $i$ und der vorhergesagten Kriteriumsvariable lässt sich mit dem Strukturkoeffizienten $c_i$ ausdrücken.

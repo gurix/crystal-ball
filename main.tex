@@ -44,7 +44,7 @@
 \maketitle
 \end{titlepage}
 \thispagestyle{empty}
-Ziel der multiplen Regression ist es Kriteriumsvariablen durch mehrere Prädiktor- variablen möglichst gut vorherzusagen. In diesem Kontext kommen Automatische Modellwahlverfahren zur Anwendung, wenn für die Schätzung des Modells viele potentielle Prädiktoren zur Auswahl stehen, insbesondere wenn theoretische Grundlagen fehlen. Das exhaustive Verfahren in Kombination mit der Kreuzvalidierung ist momentan die einzige Technik, die das beste und stabilste Modell findet. Schrittweise Verfahren kommen zur Anwendung bei kleinem Stichprobenumfang. Während früher aus Mangel an Rechenleistung standardmässig schrittweise Verfahren angewandt wurden, soll heutzutage das rechenintensive exhaustive Verfahren bevorzugt werden.
+Ziel der multiplen Regression ist es Kriteriumsvariablen durch mehrere Prädiktor- variablen möglichst gut vorherzusagen. In diesem Kontext kommen automatische Modellwahlverfahren zur Anwendung, wenn für die Schätzung des Modells viele potentielle Prädiktoren zur Auswahl stehen, insbesondere wenn theoretische Grundlagen fehlen. Das exhaustive Verfahren in Kombination mit der Kreuzvalidierung ist momentan die einzige Technik, die das beste und stabilste Modell findet. Schrittweise Verfahren kommen zur Anwendung bei kleinem Stichprobenumfang. Während früher aus Mangel an Rechenleistung standardmässig schrittweise Verfahren angewandt wurden, soll heutzutage das rechenintensive exhaustive Verfahren bevorzugt werden.
 
 \begin{center}
 \includegraphics[width=0.1\textwidth]{cc_by_sa.jpg}\\
@@ -61,7 +61,7 @@ Dieses Werk bzw. Inhalt steht unter einer Creative Commons Namensnennung - Weite
 \input{glossar}
 \input{introduction}
 \section{Recherche}
-Hauptquelle der Literatur-Recherche waren Artikel, welche via Google Scholar gefunden wurden. Als Stichworte zu nennen sind \textit{stepwise model selection, stepwise regression criteria, model selection paradigm, cross validation, overfitting}. Grundlagen zu den Verfahren wurden mittels \citeA{bortz2011} und \citeA{jacob2003applied} erarbeitet. Der Fokus bei der Recherche wurde auf Artikel im Bereich der Psychologie gerichtet, es fanden sich jedoch auch  viele Artikel in anderen Fachbereichen, welche mit den selben Problemen konfrontiert sind. Kurz vorgestellt wurden die Verfahren von Carolin Strobl in der Vorlesung ``160 Psychologische Methoden: Datenerhebung, Analyse und Darstellung'' im Rahmen des Psychologie-Aufbaustudiums der Universität Zürich. Interessante Hinweise und praktische Beispiele fanden sich ausserdem in den Manuals von R \cite{R:core}.
+Hauptquelle der Literatur-Recherche waren Artikel, die via Google Scholar gefunden wurden. Als Stichworte zu nennen sind \textit{stepwise model selection, stepwise regression criteria, model selection paradigm, cross validation, overfitting}. Grundlagen zu den Verfahren wurden mittels \citeA{bortz2011} und \citeA{jacob2003applied} erarbeitet. Der Fokus bei der Recherche wurde auf Artikel im Bereich der Psychologie gerichtet. Es fanden sich jedoch auch  viele Artikel in anderen Fachbereichen, die mit den selben Problemen konfrontiert sind. Kurz vorgestellt wurden die Verfahren von Carolin Strobl in der Vorlesung ``160 Psychologische Methoden: Datenerhebung, Analyse und Darstellung'' im Rahmen des Psychologie-Aufbaustudiums der Universität Zürich. Interessante Hinweise und praktische Beispiele fanden sich ausserdem in den Manuals von R \cite{R:core}.
 \input{why}
 \input{model_selection}
 \input{multikolinearitaet}
@@ -96,6 +96,7 @@ summary(cdata)
 summary(lm(crime ~ pctwhite + single, data = cdata))
 CVlm(cdata,form.lm = formula(crime ~ pctwhite + single), m=3, plotit="Residual")
 \end{verbatim}
+\newpage
 \subsection*{Selbstständigkeitserklärung zur Literaturarbeit am  Psychologischen Institut}
 \paragraph{Originalarbeit}
 Ich erkläre ausdrücklich, dass es sich bei der von mir eingereichten schriftlichen Arbeit 
