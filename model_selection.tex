@@ -10,8 +10,8 @@ Anhand des Trainingsdatensatzes wurde das Modell jedoch auch geschätzt. Entspre
 ``All models are wrong, but some are useful'' \cite[p.424]{box1979robustness}.
 Box will damit hervorheben, dass obschon in der Literatur oft vom ``besten'' oder ``wahren'' Modell gesprochen wird, dies nur eine Approximation der Wirklichkeit darstellt \cite[p.172]{weakliem2004introduction}.
 
-\subsection{Exhaustive Schätzung} 
-Eine naive Herangehensweise ist, alle möglichen Modelle, welche mit $p$ Prädiktoren möglich sind, durchzurechnen. 
+\subsection{Exhaustive Schätzung}
+Eine naive Herangehensweise ist, alle möglichen Modelle durchzurechnen, welche mit $p$ Prädiktoren möglich sind. 
 Zur Beurteilung der Modellgüte kann die mittlere quadratische Abweichung herangezogen werden.
 Das Modell mit der kleinsten Fehlerquadratsumme $SSE_p$ wird als das  optimale Modell bezeichnet \cite[p. 6]{thompson1978selection}. 
 
@@ -32,7 +32,7 @@ Das optimale Modell beinhaltet jeden Prädiktor, der die Voraussage auch nur min
 Es stellt sich die Frage, ob diese minimale Verbesserung auch nützlich ist oder einfach durch Zufall entstanden ist. 
 Schrittweise Verfahren arbeiten wesentlich liberaler.  Prädiktoren werden hinzugefügt oder eliminiert, je nach deren Relevanz für die Modellgüte. 
 Es werden Kriterien festgelegt, nach welchen ein Modell als angemessen zu betrachten ist. 
-Dies hat gegenüber dem \gls{glos:exhaustive Verfahren} den Vorteil, dass nicht alle Modelle berechnet werden müssen und entsprechend schneller Lösungen gefunden werden.
+Dies hat gegenüber dem \glspl{glos:exhaustive Verfahren} den Vorteil, dass nicht alle Modelle berechnet werden müssen und entsprechend schneller Lösungen gefunden werden.
 
 Innerhalb der schrittweisen Verfahren unterscheidet man zwischen \textit{Forward Selection} und \textit{Backward Elimination}. 
 \begin{figure}[htbp]
@@ -54,7 +54,7 @@ Um diesem Umstand Rechnung zu tragen, werden oft Forward Selection und Backward 
 In seltenen Fällen kann es vorkommen, dass zwei Variablen für sich in die Regressionsgleichung aufgenommen, die Vorhersage kaum verbessern und das Kriterium nicht erfüllen. Zusammen leisten sie jedoch  einen substantiellen Beitrag \cite[p.261]{jacob2003applied}. 
 \Gls{glos:schrittweise Verfahren} mittels Forward Selection sind entsprechend nicht in der Lage solche Effekte mit zu berücksichtigen, wogegen Backward Elimination robuster gegen solche Supressionseffekte ist \cite{shieh2006suppression}. 
 
-Zentrales Element der schrittweisen Regression ist, das Kriterium zur Beurteilung der  Modellanpassung, welches besagt, weshalb und wann ein Modell als akzeptabel zu betrachten ist. Als Folge dessen, wird damit auch die Anzahl relevanter Prädiktoren bestimmt. Im Laufe der Zeit wurden diverse Kriterien definiert, welche alle für sich ihre Berechtigung haben.
+Zentrales Element der schrittweisen Regression ist das Kriterium zur Beurteilung der  Modellanpassung, welches besagt, weshalb und wann ein Modell als akzeptabel zu betrachten ist. Als Folge dessen, wird damit auch die Anzahl relevanter Prädiktoren bestimmt. Im Laufe der Zeit wurden diverse Kriterien definiert, welche alle für sich ihre Berechtigung haben.
 Einteilen lassen sie sich in Kriterien, welche (a) sich auf die Beurteilung innerhalb des Trainingsdatensatzes beschränken oder (b) die Generalisierbarkeit ausserhalb des Trainingsdatensatzes zu berücksichtigen versuchen. Letztere werden im Abschnitt des Overfittings beschrieben.
 
 Interessiert uns die \Gls{glos:Modellguete} innerhalb des Trainingsdatensatzes bietet das Bestimmtheitsmass erste Hinweise. Im Fall der multiplen Regression entspricht dies dem Quadrat des multiplen Korrelationskoeffizienten $R^2$ und  besagt, wie viel systematische Varianz durch das Modell aufgeklärt  wird. 
@@ -75,7 +75,7 @@ Daraus resultierend lehnen sie die Verwendung der schrittweisen Regression mitte
 
 Eine weitere Schwäche des Hypothesentestens ist der Einfluss der Stichprobengrösse. So kann bei genügend grossem Umfang nahezu jedes Modell  signifikant werden, was wiederum zu komplexen und überangepassten Modellen führt \cite[p.173]{weakliem2004introduction}.
 
-Entgegen dem exhaustiven Verfahren besteht bei Schrittweisen das Problem, dass unter Umständen nicht das optimale Modell gefunden wird. 
+Entgegen dem exhaustiven besteht bei schrittweisen Verfahren das Problem, dass unter Umständen nicht das optimale Modell gefunden wird. 
 \citeA[p. 462]{bortz2011} bezeichnen diese Verfahren eher als explorativ, da die Nützlichkeitsunterschiede, die oft nur geringe statistische Bedeutung haben, das Modell bestimmen.
 \citeA[p. 56ff]{harrell2001regression} lehnt das Verfahren gar ab und führt ins Feld, dass sämtliche statistischen Prinzipien verletzt würden. 
 \citeA{berk1978comparing} zeigte in einem Vergleich, dass die durchschnittliche Differenz der Fehlerquadratsummen zwischen exhaustiver und schrittweiser Regression kaum 7\% übertrifft. Bei Modellen, welche im Allgemeinen bereits viel Varianz aufklären, mag dies akzeptabel sein. Wenn hingegen zu befürchten ist, dass wenig Varianz aufgeklärt werden kann, könnte diese Differenz jedoch das Zünglein an der Waage sein.
