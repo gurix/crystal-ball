@@ -38,10 +38,10 @@
 
 \title{Automatische Verfahren zur Prädiktorauswahl in Regressionsmodellen}
 \shorttitle{Prädiktorauswahl in Regressionsmodellen} 
-\author{Literaturarbeit vorgelegt von \\ Markus Graf (markus.graf@uzh.ch)}
+\author{Literaturarbeit vorgelegt von Markus Graf}
 \date{25. Juni 2013}
 
-\affiliation{am Lehrstuhl für Psychologische Methodenlehre, Evaluation und Statistik \\ des Psychologischen Institut der Universität Zürich \\ ~ \\  Betreut durch Dr. Christina Werner \\ ~ \\ 25.Juni 2013}
+\affiliation{~ \\ ~ \\ am Lehrstuhl für Psychologische Methodenlehre, Evaluation und Statistik \\ des Psychologischen Institut der Universität Zürich \\ ~ \\  Betreut durch Dr. Christina Werner \\ ~ \\ 25.Juni 2013}
 \maketitle
 \\
 \\
@@ -113,7 +113,8 @@ require(DAAG)
 cdata <- read.dta("http://www.ats.ucla.edu/stat/data/crime.dta")
 summary(cdata)
 summary(lm(crime ~ pctwhite + single, data = cdata))
-CVlm(cdata,form.lm = formula(crime ~ pctwhite + single), m=3, plotit="Residual")
+CVlm(cdata,form.lm = formula(crime ~ pctwhite + single), m=3, 
+    plotit="Residual")
 \end{verbatim}
 \newpage
 \subsection*{Selbstständigkeitserklärung zur Literaturarbeit am  Psychologischen Institut}
